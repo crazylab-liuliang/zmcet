@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://launch/title.png" type="Texture" id=1]
 [ext_resource path="res://launch/item.tscn" type="PackedScene" id=2]
+[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=3]
 
 [node name="launch" type="Node"]
 
@@ -51,5 +52,24 @@ margin/left = 1.0
 margin/top = 115.0
 margin/right = 41.0
 margin/bottom = 155.0
+
+[node name="item 2" parent="ui" instance=ExtResource( 2 )]
+
+margin/top = 168.0
+margin/bottom = 208.0
+
+[node name="item3" parent="ui" instance=ExtResource( 2 )]
+
+margin/left = 1.0
+margin/top = 221.0
+margin/right = 41.0
+margin/bottom = 261.0
+
+[node name="bottom_bar" parent="ui" instance=ExtResource( 3 )]
+
+margin/left = 1.0
+margin/top = 617.0
+margin/right = 375.0
+margin/bottom = 666.0
 
 
