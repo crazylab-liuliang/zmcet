@@ -1,0 +1,98 @@
+[gd_scene format=1]
+
+[node name="item" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="bg" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 375.0
+margin/bottom = 40.0
+stretch_mode = 0
+
+[node name="icon" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+stretch_mode = 0
+
+[node name="name" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 53.0
+margin/top = 4.0
+margin/right = 139.0
+margin/bottom = 18.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Listengine----"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="desc" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 54.0
+margin/top = 23.0
+margin/right = 202.0
+margin/bottom = 37.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "tottotal 1462  rate 25%"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="enter" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 334.0
+margin/top = 0.0
+margin/right = 374.0
+margin/bottom = 40.0
+stretch_mode = 0
+
+[node name="on_click" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 374.0
+margin/bottom = 40.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+
