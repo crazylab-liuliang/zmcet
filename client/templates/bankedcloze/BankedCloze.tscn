@@ -15,12 +15,288 @@ size_flags/vertical = 2
 margin/left = 9.0
 margin/top = 11.0
 margin/right = 368.0
-margin/bottom = 450.0
+margin/bottom = 386.0
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 custom_colors/selection_color = Color( 0.722656, 0.0366974, 0.0366974, 1 )
 bbcode/enabled = true
 bbcode/bbcode = ""
 visible_characters = -1
+
+[node name="TabContainer" type="TabContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 13.0
+margin/top = 401.0
+margin/right = 370.0
+margin/bottom = 662.0
+tab_align = 1
+tabs_visible = true
+
+[node name="option" type="ButtonGroup" parent="TabContainer"]
+
+editor/display_folded = true
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 10.0
+margin/top = 37.0
+margin/right = 7.0
+margin/bottom = 29.0
+alignment = 0
+
+[node name="A" type="CheckBox" parent="TabContainer/option"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 340.0
+margin/bottom = 23.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "How"
+flat = false
+align = 0
+
+[node name="B" type="CheckBox" parent="TabContainer/option"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 23.0
+margin/right = 340.0
+margin/bottom = 46.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Where"
+flat = false
+align = 0
+
+[node name="C" type="CheckBox" parent="TabContainer/option"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 46.0
+margin/right = 340.0
+margin/bottom = 69.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "When"
+flat = false
+align = 0
+
+[node name="D" type="CheckBox" parent="TabContainer/option"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 69.0
+margin/right = 340.0
+margin/bottom = 92.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Why"
+flat = false
+align = 0
+
+[node name="wochao" type="ButtonGroup" parent="TabContainer"]
+
+editor/display_folded = true
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+alignment = 0
+
+[node name="A" type="CheckBox" parent="TabContainer/wochao"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 340.0
+margin/bottom = 23.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "How"
+flat = false
+align = 0
+
+[node name="B" type="CheckBox" parent="TabContainer/wochao"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 23.0
+margin/right = 340.0
+margin/bottom = 46.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Where"
+flat = false
+align = 0
+
+[node name="C" type="CheckBox" parent="TabContainer/wochao"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 46.0
+margin/right = 340.0
+margin/bottom = 69.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "When"
+flat = false
+align = 0
+
+[node name="D" type="CheckBox" parent="TabContainer/wochao"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 69.0
+margin/right = 340.0
+margin/bottom = 92.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Why"
+flat = false
+align = 0
+
+[node name="option2" type="ButtonGroup" parent="TabContainer"]
+
+editor/display_folded = true
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 32.0
+margin/right = 4.0
+margin/bottom = 4.0
+alignment = 0
+
+[node name="A" type="CheckBox" parent="TabContainer/option2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 340.0
+margin/bottom = 23.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "How"
+flat = false
+align = 0
+
+[node name="B" type="CheckBox" parent="TabContainer/option2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 23.0
+margin/right = 340.0
+margin/bottom = 46.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Where"
+flat = false
+align = 0
+
+[node name="C" type="CheckBox" parent="TabContainer/option2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 46.0
+margin/right = 340.0
+margin/bottom = 69.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "When"
+flat = false
+align = 0
+
+[node name="D" type="CheckBox" parent="TabContainer/option2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 69.0
+margin/right = 340.0
+margin/bottom = 92.0
+toggle_mode = true
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Why"
+flat = false
+align = 0
 
 [connection signal="meta_clicked" from="content" to="." method="_on_content_meta_clicked"]
 

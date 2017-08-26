@@ -8,7 +8,7 @@ func _ready():
 	load_question()
 	
 	content_now = question_data.content
-	for i in range(20):
+	for i in range(21):
 		var orig_str = "(%d)" % i 
 		var dest_str = "[color=red][url=%d](%d)[/url][/color]" % [i, i]
 		content_now = content_now.replace(orig_str, dest_str)
@@ -30,3 +30,6 @@ func _on_content_meta_clicked( meta):
 	
 	get_node("content").clear()
 	get_node("content").append_bbcode(content_now)
+	
+func show_option():
+	pass
