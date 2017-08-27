@@ -2,8 +2,8 @@
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
 [ext_resource path="res://launch/title.png" type="Texture" id=2]
-[ext_resource path="res://launch/item.tscn" type="PackedScene" id=3]
-[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://launch/item.tscn" type="PackedScene" id=4]
 
 [node name="launch" type="Node"]
 
@@ -49,29 +49,124 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="vocabulary" parent="ui" instance=ExtResource( 3 )]
-
-margin/left = 1.0
-margin/top = 115.0
-margin/right = 41.0
-margin/bottom = 155.0
-name = "Vocabulary"
-target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
-
-[node name="item1" parent="ui" instance=ExtResource( 3 )]
-
-margin/left = 1.0
-margin/top = 166.0
-margin/right = 41.0
-margin/bottom = 206.0
-name = "Blanked Cloze"
-target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
-
-[node name="bottom_bar" parent="ui" instance=ExtResource( 4 )]
+[node name="bottom_bar" parent="ui" instance=ExtResource( 3 )]
 
 margin/left = 1.0
 margin/top = 617.0
 margin/right = 375.0
 margin/bottom = 666.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ui"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 110.0
+margin/right = 388.0
+margin/bottom = 613.0
+scroll/horizontal = true
+scroll/vertical = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/ScrollContainer"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 500.0
+custom_constants/separation = 50
+alignment = 0
+
+[node name="item25" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/right = 0.0
+margin/bottom = 0.0
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item24" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 50.0
+margin/right = 0.0
+margin/bottom = 50.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item23" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 100.0
+margin/right = 0.0
+margin/bottom = 100.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item2 2" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 150.0
+margin/right = 0.0
+margin/bottom = 150.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item4" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 200.0
+margin/right = 0.0
+margin/bottom = 200.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item5" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 250.0
+margin/right = 0.0
+margin/bottom = 250.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item6" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 300.0
+margin/right = 0.0
+margin/bottom = 300.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item3" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 350.0
+margin/right = 0.0
+margin/bottom = 350.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item2" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 400.0
+margin/right = 0.0
+margin/bottom = 400.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="vocabulary" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 450.0
+margin/right = 0.0
+margin/bottom = 450.0
+name = "Vocabulary"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item1" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+
+margin/top = 500.0
+margin/right = 0.0
+margin/bottom = 500.0
+name = "Blanked Cloze"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
 
 
