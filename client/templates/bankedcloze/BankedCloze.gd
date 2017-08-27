@@ -1,6 +1,6 @@
 extends Node
 
-var question_file = "res://data/test.blankedcloze.xml"
+var question_file = "res://data/test.lesson"
 var question_data = {}
 var content_now   = ""
 
@@ -33,3 +33,7 @@ func _on_content_meta_clicked( meta):
 	
 func show_option():
 	pass
+
+
+func _on_return_pressed():
+	get_node("/root/global").set_scene("res://launch/launch.tscn")

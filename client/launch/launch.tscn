@@ -49,12 +49,22 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="item" parent="ui" instance=ExtResource( 3 )]
+[node name="vocabulary" parent="ui" instance=ExtResource( 3 )]
 
 margin/left = 1.0
 margin/top = 115.0
 margin/right = 41.0
 margin/bottom = 155.0
+name = "Vocabulary"
+target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="item1" parent="ui" instance=ExtResource( 3 )]
+
+margin/left = 1.0
+margin/top = 166.0
+margin/right = 41.0
+margin/bottom = 206.0
+name = "Blanked Cloze"
 target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
 
 [node name="bottom_bar" parent="ui" instance=ExtResource( 4 )]

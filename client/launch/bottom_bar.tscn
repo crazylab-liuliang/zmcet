@@ -29,30 +29,18 @@ stretch_mode = 0
 
 [node name="bottom_bar_item" parent="." instance=ExtResource( 2 )]
 
-margin/left = 35.0
+margin/left = 102.0
 margin/top = 6.0
-margin/right = 75.0
+margin/right = 142.0
 margin/bottom = 46.0
-
-[node name="bottom_bar_item1" parent="." instance=ExtResource( 2 )]
-
-margin/left = 119.0
-margin/top = 6.0
-margin/right = 159.0
-margin/bottom = 46.0
-
-[node name="bottom_bar_item2" parent="." instance=ExtResource( 2 )]
-
-margin/left = 206.0
-margin/top = 7.0
-margin/right = 246.0
-margin/bottom = 47.0
+desc = "Courses"
 
 [node name="bottom_bar_item3" parent="." instance=ExtResource( 2 )]
 
-margin/left = 285.0
-margin/top = 6.0
-margin/right = 325.0
-margin/bottom = 46.0
+margin/left = 229.0
+margin/top = 7.0
+margin/right = 269.0
+margin/bottom = 47.0
+desc = "Profile"
 
 
