@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
 [ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://launch/item.tscn" type="PackedScene" id=3]
-[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=3]
 
 [node name="launch" type="Node"]
 
@@ -16,22 +15,22 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="head_bar" parent="ui" instance=ExtResource( 2 )]
+[node name="body" type="ScrollContainer" parent="ui"]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ui"]
-
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 110.0
-margin/right = 388.0
-margin/bottom = 613.0
-scroll/horizontal = true
+margin/top = 49.0
+margin/right = 0.0
+margin/bottom = 35.0
+scroll/horizontal = false
 scroll/vertical = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ui/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/body"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -39,23 +38,19 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 375.0
-margin/bottom = 50.0
+margin/right = 0.0
+margin/bottom = 0.0
 custom_constants/separation = 0
 alignment = 0
 
-[node name="vocabulary" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
+[node name="head_bar" parent="ui" instance=ExtResource( 2 )]
 
+[node name="bottom_bar" parent="ui" instance=ExtResource( 3 )]
+
+anchor/top = 1
+anchor/bottom = 1
+margin/top = 67.0
 margin/right = 375.0
-margin/bottom = 50.0
-name = "Vocabulary"
-target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
-
-[node name="bottom_bar" parent="ui" instance=ExtResource( 4 )]
-
-margin/left = 1.0
-margin/top = 617.0
-margin/right = 375.0
-margin/bottom = 666.0
+margin/bottom = -3.0
 
 
