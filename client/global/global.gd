@@ -20,5 +20,7 @@ func set_scene(name):
 	
 # 启动
 func load_global_scripts():
-	pass
+	var viewport = preload("res://global/viewport.gd").new()
+	viewport.set_name("viewport")
+	get_tree().get_root().add_child(viewport)
 	

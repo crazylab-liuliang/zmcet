@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
-[ext_resource path="res://launch/title.png" type="Texture" id=2]
-[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://launch/item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://launch/item.tscn" type="PackedScene" id=3]
+[ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=4]
 
 [node name="launch" type="Node"]
 
@@ -16,40 +16,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="title" type="TextureFrame" parent="ui"]
-
-editor/display_folded = true
-anchor/right = 1
-rect/scale = Vector2( 0.5, 0.5 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = -375.0
-margin/bottom = 200.0
-texture = ExtResource( 2 )
-stretch_mode = 0
-
-[node name="cet4_time" type="Label" parent="ui/title"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 56.0
-margin/top = 152.0
-margin/right = 158.0
-margin/bottom = 184.0
-text = "115 day"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="bottom_bar" parent="ui" instance=ExtResource( 3 )]
+[node name="bottom_bar" parent="ui" instance=ExtResource( 2 )]
 
 margin/left = 1.0
 margin/top = 617.0
@@ -58,6 +25,7 @@ margin/bottom = 666.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ui"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -71,6 +39,7 @@ scroll/vertical = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ui/ScrollContainer"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -82,11 +51,13 @@ margin/bottom = 50.0
 custom_constants/separation = 0
 alignment = 0
 
-[node name="vocabulary" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+[node name="vocabulary" parent="ui/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
 
 margin/right = 375.0
 margin/bottom = 50.0
 name = "Vocabulary"
 target_scene = "res://templates/bankedcloze/BankedCloze.tscn"
+
+[node name="head_bar" parent="ui" instance=ExtResource( 4 )]
 
 
