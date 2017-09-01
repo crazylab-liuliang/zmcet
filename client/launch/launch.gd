@@ -35,5 +35,8 @@ func set_course(course):
 			unit = preload("res://templates/unit/units_column_3.tscn").instance()
 			
 		vcontainer.add_child(unit)
+		
+	var unit_bottom = preload("res://templates/unit/units_bottom.tscn").instance()
+	vcontainer.add_child(unit_bottom)
 	
 	

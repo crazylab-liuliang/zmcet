@@ -15,22 +15,26 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 374.0
-margin/bottom = 40.0
+margin/right = 375.0
+margin/bottom = 70.0
 texture = ExtResource( 1 )
 stretch_mode = 0
 script/script = ExtResource( 2 )
 
 [node name="study" type="TextureButton" parent="."]
 
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 101.0
-margin/top = 15.0
-margin/right = 146.0
-margin/bottom = 56.0
+margin/left = 82.5
+margin/top = 24.0
+margin/right = 46.5
+margin/bottom = -9.0
 toggle_mode = true
 is_pressed = true
 enabled_focus_mode = 2
@@ -38,8 +42,25 @@ shortcut = null
 textures/normal = ExtResource( 3 )
 textures/pressed = ExtResource( 4 )
 params/resize_mode = 0
-params/scale = Vector2( 0.5, 0.5 )
+params/scale = Vector2( 0.4, 0.4 )
 params/stretch_mode = 0
+
+[node name="text" type="Label" parent="study"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -2.0
+margin/top = 36.0
+margin/right = 38.0
+margin/bottom = 50.0
+custom_colors/font_color = Color( 0.290196, 0.564706, 0.886275, 1 )
+text = "Study"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="me" type="TextureButton" parent="."]
 
@@ -47,18 +68,35 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 229.0
-margin/top = 15.0
-margin/right = 272.0
-margin/bottom = 54.0
+margin/left = 234.0
+margin/top = 11.0
+margin/right = 367.0
+margin/bottom = 64.0
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 5 )
 textures/pressed = ExtResource( 6 )
 params/resize_mode = 0
-params/scale = Vector2( 0.5, 0.5 )
+params/scale = Vector2( 0.4, 0.4 )
 params/stretch_mode = 0
+
+[node name="text" type="Label" parent="me"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -2.0
+margin/top = 36.0
+margin/right = 38.0
+margin/bottom = 50.0
+custom_colors/font_color = Color( 0.592157, 0.592157, 0.592157, 1 )
+text = "Me"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="pressed" from="study" to="." method="_on_study_pressed"]
 
