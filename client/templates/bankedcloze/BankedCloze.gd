@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 var question_file = "res://data/test.lesson"
 var question_data = {}
@@ -34,6 +34,6 @@ func _on_content_meta_clicked( meta):
 func show_option():
 	pass
 
-
 func _on_return_pressed():
-	get_node("/root/global").set_scene("res://launch/launch.tscn")
+	print("xfxfxfxfxfxf")
+	get_node("/root/launch").show("lessons")

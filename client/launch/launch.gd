@@ -20,14 +20,14 @@ func set_course(course):
 	
 	# setting icon
 	var course_icon = dir + "icon.png"
-	get_node("ui/head_bar").set_course_icon(course_icon)
+	get_node("ui/main/head_bar").set_course_icon(course_icon)
 	
 	#
 	var dirs = list_subdirectorys_in_directory(dir)
 	print(dirs)
 	
 	# show units
-	var vcontainer = get_node("ui/body/VBoxContainer")
+	var vcontainer = get_node("ui/main/body/VBoxContainer")
 	var i = 0
 	while i < dirs.size():	
 		var rani = randi() % 3	
@@ -78,5 +78,17 @@ func list_subdirectorys_in_directory(path):
 	return dirs
 	
 func on_unit_clicked(dir, subdir):
-	get_node("ui/lessons").set_hidden(false)
+	get_node("ui/lessons").set(dir, subdir)
+	show("lessons")
 	
+func show(type):
+	get_node("ui/main").set_hidden(true)
+	get_node("ui/lessons").set_hidden(true)
+	get_node("ui/bankedcloze").set_hidden(true)
+	
+	if type=="main":
+		get_node("ui/main").set_hidden(false)
+	if type=="lessons":
+		get_node("ui/lessons").set_hidden(false)
+	if type=="bankedcloze":
+		get_node("ui/bankedcloze").set_hidden(false)

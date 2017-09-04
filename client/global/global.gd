@@ -24,3 +24,19 @@ func load_global_scripts():
 	viewport.set_name("viewport")
 	get_tree().get_root().add_child(viewport)
 	
+func list_lessons(path):
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin()
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif not dir.current_is_dir() and not file.begins_with("."):
+			if file.extension() == "lesson":
+				files.append(file)
+			
+	dir.list_dir_end()
+	return files
+	
