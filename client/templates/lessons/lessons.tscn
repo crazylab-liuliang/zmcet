@@ -3,7 +3,7 @@
 [ext_resource path="res://templates/lessons/lessons.gd" type="Script" id=1]
 [ext_resource path="res://templates/lessons/lessons_bg.png" type="Texture" id=2]
 [ext_resource path="res://templates/unit/icon.png" type="Texture" id=3]
-[ext_resource path="res://font/simhei_24.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://font/dynamicfont_simhei_24.tres" type="DynamicFont" id=4]
 [ext_resource path="res://templates/lessons/item.tscn" type="PackedScene" id=5]
 [ext_resource path="res://templates/lessons/return.png" type="Texture" id=6]
 
@@ -59,7 +59,7 @@ margin/right = 246.0
 margin/bottom = 55.0
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "adfdf"
+text = "Title"
 align = 1
 valign = 1
 percent_visible = 1.0

@@ -19,7 +19,6 @@ scale = Vector2( 1, 1 )
 
 [node name="main" type="Control" parent="ui"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -40,7 +39,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 49.0
 margin/right = -337.0
-margin/bottom = -565.0
+margin/bottom = -580.0
 scroll/horizontal = false
 scroll/vertical = true
 
