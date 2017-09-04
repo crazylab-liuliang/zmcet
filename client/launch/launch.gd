@@ -77,3 +77,6 @@ func list_subdirectorys_in_directory(path):
 	dir.list_dir_end()
 	return dirs
 	
+func on_unit_clicked(dir, subdir):
+	get_node("ui/lessons").set_hidden(false)
+	

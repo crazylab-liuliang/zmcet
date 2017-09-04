@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://templates/unit/icon.png" type="Texture" id=1]
+[ext_resource path="res://templates/lessons/item.tscn" type="PackedScene" id=2]
+
+[node name="lessons" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="header" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 373.0
+margin/bottom = 214.0
+stretch_mode = 0
+
+[node name="icon" type="TextureFrame" parent="header"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 104.0
+margin/top = 31.0
+margin/right = 256.0
+margin/bottom = 183.0
+texture = ExtResource( 1 )
+stretch_mode = 0
+
+[node name="body" type="ScrollContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 213.0
+margin/right = 388.0
+margin/bottom = 663.0
+scroll/horizontal = true
+scroll/vertical = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="body"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -1.0
+margin/top = 0.0
+margin/right = 374.0
+margin/bottom = 50.0
+alignment = 0
+
+[node name="item" parent="body/VBoxContainer" instance=ExtResource( 2 )]
+
+margin/right = 375.0
+margin/bottom = 50.0
+
+

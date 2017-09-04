@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://launch/item_bg.png" type="Texture" id=1]
-[ext_resource path="res://launch/item.gd" type="Script" id=2]
+[ext_resource path="res://templates/lessons/item_bg.png" type="Texture" id=1]
+[ext_resource path="res://templates/lessons/item.gd" type="Script" id=2]
 [ext_resource path="res://launch/cet-icon.png" type="Texture" id=3]
 [ext_resource path="res://launch/enter.png" type="Texture" id=4]
 

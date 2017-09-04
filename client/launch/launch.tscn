@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
 [ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://templates/lessons/lessons.tscn" type="PackedScene" id=4]
 
 [node name="launch" type="Node"]
 
@@ -17,6 +18,7 @@ scale = Vector2( 1, 1 )
 
 [node name="body" type="ScrollContainer" parent="ui"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -51,5 +53,9 @@ anchor/top = 1
 anchor/bottom = 1
 margin/top = 67.0
 margin/bottom = -3.0
+
+[node name="lessons" parent="ui" instance=ExtResource( 4 )]
+
+visibility/visible = false
 
 

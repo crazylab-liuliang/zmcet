@@ -1,6 +1,12 @@
 extends TextureFrame
 
-func set(dir, subdir):
+var dir = ""
+var subdir = ""
+
+func set(dir_, subdir_):
+	self.dir = dir_
+	self.subdir = subdir_
+	
 	# icon
 	var icon_path = dir+ subdir + "/icon.png"
 	var tex = ResourceLoader.load(icon_path)
@@ -34,6 +40,6 @@ func list_lessons(path):
 	dir.list_dir_end()
 	return files
 
-
 func _on_icon_pressed():
-	print("happy -----------------------------")
+	if has_node("/root/launch"):
+		get_node("/root/launch").on_unit_clicked(dir, subdir)
