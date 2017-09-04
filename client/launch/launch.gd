@@ -39,7 +39,7 @@ func set_course(course):
 		else:
 			unit = preload("res://templates/unit/units_column_3.tscn").instance()
 			
-		while i<dirs.size() and unit.add_unit(dirs[i]):
+		while i<dirs.size() and unit.add_unit(dir, dirs[i]):
 			i+=1
 			
 		vcontainer.add_child(unit)
@@ -72,7 +72,7 @@ func list_subdirectorys_in_directory(path):
 		if file == "":
 			break
 		elif dir.current_is_dir() and not file.begins_with("."):
-			dirs.append(path+file+"/")
+			dirs.append(file)
 			
 	dir.list_dir_end()
 	return dirs
