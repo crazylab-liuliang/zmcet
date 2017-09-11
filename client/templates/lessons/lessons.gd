@@ -1,9 +1,6 @@
 extends Control
 	
 func set(dir, subdir):
-	print(dir)
-	print(subdir)
-	
 	# set title
 	get_node("title").set_text(subdir)
 	
@@ -23,6 +20,5 @@ func set(dir, subdir):
 		get_node("body/VBoxContainer").add_child(lesson_item)
 
 func _on_return_pressed():
-	get_node("/root/launch").show("main")
-	
+	get_node("/root/launch").show("lessons")
 # 

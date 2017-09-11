@@ -86,6 +86,7 @@ func show(type):
 	get_node("ui/me").set_hidden(true)
 	get_node("ui/lessons").set_hidden(true)
 	get_node("ui/bankedcloze").set_hidden(true)
+	get_node("ui/choice").set_hidden(true)
 	get_node("ui/bottom_bar").set_hidden(true)
 	
 	if type=="main":
@@ -98,4 +99,6 @@ func show(type):
 	if type=="me":
 		get_node("ui/me").set_hidden(false)
 		get_node("ui/bottom_bar").set_hidden(false)	
+	if type=="choice":
+		get_node("ui/choice").set_hidden(false)
 		

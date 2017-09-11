@@ -1,0 +1,299 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://templates/choice/choice.gd" type="Script" id=1]
+[ext_resource path="res://launch/head_bg.png" type="Texture" id=2]
+[ext_resource path="res://font/dynamicfont_simhei_24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://launch/return.png" type="Texture" id=4]
+[ext_resource path="res://font/dynamicfont_simhei_16.tres" type="DynamicFont" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
+
+[node name="choice" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+
+[node name="header_bg" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 375.0
+margin/bottom = 50.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+
+[node name="title" type="Label" parent="header_bg"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 133.0
+margin/top = 12.0
+margin/right = 219.0
+margin/bottom = 41.0
+custom_fonts/font = ExtResource( 3 )
+text = "选择题"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="return" type="TextureButton" parent="header_bg"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 13.0
+margin/top = 15.0
+margin/right = 35.4
+margin/bottom = 37.4
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/resize_mode = 0
+params/scale = Vector2( 0.7, 0.7 )
+params/stretch_mode = 0
+
+[node name="question" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 12.0
+margin/top = 54.0
+margin/right = 366.0
+margin/bottom = 92.0
+custom_fonts/font = ExtResource( 5 )
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="vbc" type="VBoxContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 12.0
+margin/top = 97.0
+margin/right = 366.0
+margin/bottom = 586.0
+alignment = 0
+
+[node name="A" type="CheckBox" parent="vbc"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 354.0
+margin/bottom = 27.0
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="B" type="CheckBox" parent="vbc"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 31.0
+margin/right = 354.0
+margin/bottom = 58.0
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="C" type="CheckBox" parent="vbc"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 62.0
+margin/right = 354.0
+margin/bottom = 89.0
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="D" type="CheckBox" parent="vbc"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 93.0
+margin/right = 354.0
+margin/bottom = 120.0
+custom_fonts/font = ExtResource( 5 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="check" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 172.0
+margin/top = 588.0
+margin/right = 236.0
+margin/bottom = 652.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 6 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="continue" type="TextureButton" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 172.0
+margin/top = 588.0
+margin/right = 236.0
+margin/bottom = 652.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 6 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="hint_correct" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 324.0
+margin/right = 377.0
+margin/bottom = 559.0
+stretch_mode = 0
+
+[node name="correct" type="Label" parent="hint_correct"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 7.0
+margin/right = 290.0
+margin/bottom = 37.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.0251288, 0.589844, 0.00691223, 1 )
+text = "正确"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="hint" type="Label" parent="hint_correct"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 28.0
+margin/top = 50.0
+margin/right = 355.0
+margin/bottom = 185.0
+custom_fonts/font = ExtResource( 5 )
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="hint_wrong" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 324.0
+margin/right = 377.0
+margin/bottom = 559.0
+stretch_mode = 0
+
+[node name="wrong" type="Label" parent="hint_wrong"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 7.0
+margin/right = 290.0
+margin/bottom = 37.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.976563, 0.0228882, 0.112295, 1 )
+text = "错误"
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="hint" type="Label" parent="hint_wrong"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 28.0
+margin/top = 50.0
+margin/right = 355.0
+margin/bottom = 185.0
+custom_fonts/font = ExtResource( 5 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="header_bg/return" to="." method="_on_return_pressed"]
+
+[connection signal="pressed" from="check" to="." method="_on_check_pressed"]
+
+[connection signal="pressed" from="continue" to="." method="_on_continue_pressed"]
+
+
