@@ -6,6 +6,6 @@
 
 font/size = 16
 font/use_mipmaps = false
-font/use_filter = false
+font/use_filter = true
 font/font = ExtResource( 1 )
 

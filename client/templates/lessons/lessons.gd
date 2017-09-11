@@ -20,5 +20,5 @@ func set(dir, subdir):
 		get_node("body/VBoxContainer").add_child(lesson_item)
 
 func _on_return_pressed():
-	get_node("/root/launch").show("lessons")
+	get_node("/root/launch").show("main")
 # 

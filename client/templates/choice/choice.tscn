@@ -1,11 +1,32 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://templates/choice/choice.gd" type="Script" id=1]
 [ext_resource path="res://launch/head_bg.png" type="Texture" id=2]
 [ext_resource path="res://font/dynamicfont_simhei_24.tres" type="DynamicFont" id=3]
 [ext_resource path="res://launch/return.png" type="Texture" id=4]
 [ext_resource path="res://font/dynamicfont_simhei_16.tres" type="DynamicFont" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://arts/check_bg.png" type="Texture" id=6]
+[ext_resource path="res://arts/check_bg_disabled.png" type="Texture" id=7]
+[ext_resource path="res://arts/continue_bg.png" type="Texture" id=8]
+[ext_resource path="res://arts/hint_correct_bg.png" type="Texture" id=9]
+[ext_resource path="res://arts/hint_error_bg.png" type="Texture" id=10]
+[ext_resource path="res://arts/correct.wav" type="Sample" id=11]
+[ext_resource path="res://arts/wrong.wav" type="Sample" id=12]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/correct = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 11 )
+}
+samples/wrong = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 12 )
+}
 
 [node name="choice" type="Control"]
 
@@ -87,6 +108,7 @@ max_lines_visible = -1
 
 [node name="vbc" type="VBoxContainer" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -171,15 +193,17 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 172.0
-margin/top = 588.0
-margin/right = 236.0
-margin/bottom = 652.0
+margin/left = 42.0
+margin/top = 604.0
+margin/right = 332.0
+margin/bottom = 637.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 6 )
+textures/disabled = ExtResource( 7 )
 params/resize_mode = 0
+params/scale = Vector2( 0.5, 0.5 )
 params/stretch_mode = 0
 
 [node name="continue" type="TextureButton" parent="."]
@@ -189,39 +213,44 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 172.0
-margin/top = 588.0
-margin/right = 236.0
-margin/bottom = 652.0
+margin/left = 42.0
+margin/top = 604.0
+margin/right = 332.0
+margin/bottom = 637.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 6 )
+textures/normal = ExtResource( 8 )
 params/resize_mode = 0
+params/scale = Vector2( 0.5, 0.5 )
 params/stretch_mode = 0
 
 [node name="hint_correct" type="TextureFrame" parent="."]
 
+editor/display_folded = true
+rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 324.0
-margin/right = 377.0
-margin/bottom = 559.0
+margin/left = -2.0
+margin/top = 354.0
+margin/right = 673.0
+margin/bottom = 706.0
+texture = ExtResource( 9 )
 stretch_mode = 0
 
 [node name="correct" type="Label" parent="hint_correct"]
 
+rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 24.0
-margin/top = 7.0
-margin/right = 290.0
-margin/bottom = 37.0
+margin/left = 48.0
+margin/top = 14.0
+margin/right = 314.0
+margin/bottom = 44.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.0251288, 0.589844, 0.00691223, 1 )
 text = "正确"
@@ -231,14 +260,15 @@ max_lines_visible = -1
 
 [node name="hint" type="Label" parent="hint_correct"]
 
+rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 28.0
-margin/top = 50.0
-margin/right = 355.0
-margin/bottom = 185.0
+margin/left = 50.0
+margin/top = 76.0
+margin/right = 333.0
+margin/bottom = 191.0
 custom_fonts/font = ExtResource( 5 )
 autowrap = true
 percent_visible = 1.0
@@ -247,50 +277,73 @@ max_lines_visible = -1
 
 [node name="hint_wrong" type="TextureFrame" parent="."]
 
+rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 324.0
-margin/right = 377.0
-margin/bottom = 559.0
+margin/left = -2.0
+margin/top = 354.0
+margin/right = 688.0
+margin/bottom = 706.0
+texture = ExtResource( 10 )
 stretch_mode = 0
 
-[node name="wrong" type="Label" parent="hint_wrong"]
+[node name="correct" type="Label" parent="hint_wrong"]
 
+rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 24.0
-margin/top = 7.0
-margin/right = 290.0
-margin/bottom = 37.0
+margin/left = 48.0
+margin/top = 14.0
+margin/right = 314.0
+margin/bottom = 44.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.976563, 0.0228882, 0.112295, 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "错误"
-autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
 [node name="hint" type="Label" parent="hint_wrong"]
 
+rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 28.0
-margin/top = 50.0
-margin/right = 355.0
-margin/bottom = 185.0
+margin/left = 50.0
+margin/top = 76.0
+margin/right = 332.0
+margin/bottom = 191.0
 custom_fonts/font = ExtResource( 5 )
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="sound" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 1 )
+config/pitch_random = 0.0
+
 [connection signal="pressed" from="header_bg/return" to="." method="_on_return_pressed"]
+
+[connection signal="toggled" from="vbc/A" to="." method="_on_choice_toggled"]
+
+[connection signal="toggled" from="vbc/B" to="." method="_on_choice_toggled"]
+
+[connection signal="toggled" from="vbc/C" to="." method="_on_choice_toggled"]
+
+[connection signal="toggled" from="vbc/D" to="." method="_on_choice_toggled"]
 
 [connection signal="pressed" from="check" to="." method="_on_check_pressed"]
 

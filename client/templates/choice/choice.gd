@@ -10,7 +10,6 @@ func set_data(data, exercises_):
 	exercise_data = data
 	exercises = exercises_
 	
-	print(exercise_data)
 	get_node("question").set_text(exercise_data.question)
 	get_node("vbc/A").set_text(exercise_data.options.A)
 	get_node("vbc/B").set_text(exercise_data.options.B)
@@ -18,6 +17,7 @@ func set_data(data, exercises_):
 	get_node("vbc/D").set_text(exercise_data.options.D)
 	
 	get_node("check").set_hidden(false)
+	get_node("check").set_disabled(true)
 	get_node("continue").set_hidden(true)
 	
 	get_node("hint_wrong").set_hidden(true)
@@ -40,9 +40,11 @@ func _on_check_pressed():
 	if answer == exercise_data.answer:
 		get_node("hint_correct/hint").set_text(exercise_data.hint)
 		get_node("hint_correct").set_hidden(false)
+		get_node("sound").play("correct")
 	else:
 		get_node("hint_wrong/hint").set_text(exercise_data.hint)
 		get_node("hint_wrong").set_hidden(false)
+		get_node("sound").play("wrong")
 		
 	get_node("check").set_hidden(true)
 	get_node("continue").set_hidden(false)
@@ -55,3 +57,10 @@ func _on_continue_pressed():
 	get_node("vbc/B").set_pressed(false)
 	get_node("vbc/C").set_pressed(false)
 	get_node("vbc/D").set_pressed(false)
+	
+
+func _on_choice_toggled( pressed ):
+	if get_node("vbc/A").is_pressed() or get_node("vbc/B").is_pressed() or get_node("vbc/C").is_pressed() or get_node("vbc/D").is_pressed():
+		get_node("check").set_disabled(false)
+	else:
+		get_node("check").set_disabled(true)
