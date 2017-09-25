@@ -19,7 +19,7 @@ public class db {
 	public db() {
 		try {
 			//Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/shooter", "postgres", "Q19870816q");		
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/zm", "postgres", "Q19870816q");		
 			logger.info("db:connected");		
 		}catch(Exception e){
 			e.printStackTrace();

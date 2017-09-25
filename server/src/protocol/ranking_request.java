@@ -8,7 +8,7 @@ public class ranking_request extends message {
 	@Override
 
 	public int id(){
-		 return 23;
+		 return 8;
 	}
 
 	@Override

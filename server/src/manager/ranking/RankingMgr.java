@@ -115,9 +115,9 @@ public class RankingMgr {
 		Gson gson = new Gson();	
 		String json = gson.toJson(higerChuangGuanRanking.getList(0, 9));
 		
-		protocol.ranking_response msg = new protocol.ranking_response();
-		msg.ranking = json;
-		channelCtx.write(msg.data());
+		//protocol.ranking_response msg = new protocol.ranking_response();
+		//msg.ranking = json;
+		//channelCtx.write(msg.data());
 	}
 	
 	

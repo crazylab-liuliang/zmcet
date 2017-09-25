@@ -1,7 +1,7 @@
 import psycopg2
 import sys
 
-dbName   = "shooter"
+dbName   = "zm"
 userName = 'postgres'
 userPW   = 'Q19870816q'
 

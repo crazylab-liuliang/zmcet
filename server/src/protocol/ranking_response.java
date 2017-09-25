@@ -9,7 +9,7 @@ public class ranking_response extends message {
 	@Override
 
 	public int id(){
-		 return 24;
+		 return 9;
 	}
 
 	@Override

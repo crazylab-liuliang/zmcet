@@ -30,26 +30,6 @@ public class Backpack {
 	public Backpack() {
 	}
 	
-	public void sendBackpackInfo(ChannelHandlerContext ctx){	
-		protocol.backpack_num bp_num = new protocol.backpack_num();
-		bp_num.num = cell_number;
-		ctx.write( bp_num.data());
-		
-		System.out.println(String.format("cells:%d", cells.size()));
-		
-		for(Cell cell : cells) {
-			sendCellInfo( ctx, cell);
-		}
-	}
-	
-	public void sendCellInfo(ChannelHandlerContext ctx, Cell cell) {
-		protocol.backpack_cell bp_cell = new protocol.backpack_cell();
-		bp_cell.index = cell.cell_idx;
-		bp_cell.item_id = cell.item_id;
-		bp_cell.item_num = cell.item_num;
-		ctx.write(bp_cell.data());
-	}
-	
 	public Cell AddItem(int item_id, int count, int type){
 		Cell cell = getCellByItemID(item_id);
 		if( cell!=null){
@@ -64,37 +44,6 @@ public class Backpack {
 		}
 		
 		return cell;
-	}
-	
-	public Cell useItem( int cellIdx, ChannelHandlerContext ctx) {
-		Cell cell = getCellByItemIdx(cellIdx);
-		if( cell!=null && cell.item_num>0){
-			cell.item_num -= 1;
-		}
-		
-		if(cell!=null) {
-			sendCellInfo(ctx, cell);
-			
-			if(cell.item_num==0) {
-				cells.remove(cell);
-			}
-			
-			return cell;
-		}
-		
-		return null;
-	}
-	
-	public void collectItem(int item_id, int count, int type, ChannelHandlerContext ctx) {
-		Cell cell = AddItem(item_id, count, type);
-		
-		// send to client
-		if(cell!=null) {
-			sendCellInfo(ctx, cell);
-		}else
-		{
-			System.out.println("there are no space for new item. client shout respect for this");
-		}
 	}
 	
 	public Cell getCellByItemID(int id) {

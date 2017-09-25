@@ -147,9 +147,6 @@ public class Player {
 		}
 		
 		sendPlayerInfo();
-		
-		// User logined
-		RoomMgr.instance().on_player_logined( table.player);
 	}
 	
 	protected void disconnectPlayer(long account) {
@@ -247,50 +244,10 @@ public class Player {
 		info = gson.fromJson( table.info, Info.class);
 	}
 	
-	// ---------------------receive---------------------
-	public void on_battle_player_shoot(protocol.battle_player_shoot msg){
-		Room room = RoomMgr.instance().getRoom(get_id());
-		if(room!=null) {
-			room.on_batle_player_shoot(get_id(), msg);
-		}
-	}
-	
 	public void on_battle_switch_turn() {
 		Room room = RoomMgr.instance().getRoom(get_id());
 		if(room!=null) {
 			room.on_batle_switch_turn(get_id());
-		}
-	}
-	
-	public void on_battle_blood_changed(protocol.battle_player_blood msg) {
-		Room room = RoomMgr.instance().getRoom(get_id());
-		if(room!=null) {
-			room.on_batle_player_blood_changed(get_id(), msg);
-		}
-	}
-	
-	public void on_battle_sync_aim_degree(protocol.battle_sync_aim_degree msg) {
-		Room room = RoomMgr.instance().getRoom(get_id());
-		if(room!=null) {
-			room.on_battle_sync_aim_degree(get_id(), msg);
-		}
-	}
-	
-	public void on_new_max_score(protocol.max_score msg) {
-		if(info.baseInfo.onNewMaxScore( msg.max_score)) {
-			RankingMgr.getInstance().onChuangGuanScoreChanged( table.account, info.baseInfo.name, msg.max_score);
-		}
-	}
-	
-	public void collectItem(int id, int count, int type) {
-		info.backpack.collectItem(id, count, type, mChannelCtx);
-	}
-	
-	public void onEatItem(int slotIdx) {
-		Cell cell = info.backpack.useItem(slotIdx, mChannelCtx);
-		if(cell!=null) {
-			info.baseInfo.onCure( 25);
-			info.baseInfo.sendBloodInfo(mChannelCtx);
 		}
 	}
 	
@@ -333,29 +290,7 @@ public class Player {
 		mChannelCtx.write(msg.data());
 	}
 	
-	// send info to client
-	public void sendBackpackInfo(){
-		info.backpack.sendBackpackInfo(mChannelCtx);
-	}
-	
 	public void sendMsg(ByteBuf buf) {
 		mChannelCtx.writeAndFlush(buf);
 	}
-	
-	// --------------------search room-------------------------
-	public void search_room_begin() {
-		RoomMgr.instance().add_player(get_id());
-			
-		protocol.search_room_result msg = new protocol.search_room_result();
-		msg.result = 1;
-		mChannelCtx.write(msg.data());
-	}
-	
-	public void search_room_end() {
-		RoomMgr.instance().remove_player(get_id());
-		
-		protocol.search_room_result msg = new protocol.search_room_result();
-		msg.result = 0;
-		mChannelCtx.write(msg.data());
-	}	
 }
