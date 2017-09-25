@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 public class HttpServer {
 	public static HttpServer inst = null;
-	public static int port = 8900;
+	public static int port = 6900;
 	private static final Logger logger = LogManager.getLogger("http server");
 	private NioEventLoopGroup bossGroup = null;
 	private NioEventLoopGroup workGroup = null;

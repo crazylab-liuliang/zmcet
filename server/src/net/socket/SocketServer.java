@@ -49,7 +49,7 @@ public class SocketServer {
 	}
 	
 	private void initData(){
-		port = 8800;
+		port = 6800;
 	}
 
 	public void start() {
