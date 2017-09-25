@@ -16,8 +16,8 @@ func set(dir, subdir):
 	var lessons = get_node("/root/global").list_lessons(dir + subdir)
 	for lesson in lessons:
 		var lesson_item = load("res://templates/lessons/item.tscn").instance()
-		lesson_item.set(dir+subdir+"/", lesson)
 		get_node("body/VBoxContainer").add_child(lesson_item)
+		lesson_item.set(dir+subdir+"/", lesson)
 
 func _on_return_pressed():
 	get_node("/root/launch").show("main")

@@ -17,9 +17,16 @@ func set(dir_, subdir_):
 	get_node("name").set_text(unit_name)
 	
 	# lesson
-	var lesson = String(0) + "/" + String(lesson_num(dir+subdir))
+	var finish_lessons = 1
+	var lesson_nums = lesson_num(dir+subdir)
+	var lesson = String(finish_lessons) + "/" + String(lesson_nums)
 	get_node("progress").set_text(lesson)
 	
+	if lesson_nums > 0:
+		print("------------------------------", lesson_nums)
+		set_hue( finish_lessons/lesson_nums)
+	else:
+		set_hue(0.0)
 	
 func lesson_num(dir):
 	return list_lessons(dir).size()
@@ -43,3 +50,6 @@ func list_lessons(path):
 func _on_icon_pressed():
 	if has_node("/root/launch"):
 		get_node("/root/launch").on_unit_clicked(dir, subdir)
+		
+func set_hue(hue):
+	get_node("icon").get_material().set_shader_param("Hue", hue)

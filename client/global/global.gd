@@ -24,6 +24,10 @@ func load_global_scripts():
 	viewport.set_name("viewport")
 	get_tree().get_root().add_child(viewport)
 	
+	var data = preload("res://global/data.gd").new()
+	data.set_name("data")
+	get_tree().get_root().add_child(data)
+	
 func list_lessons(path):
 	var files = []
 	var dir = Directory.new()

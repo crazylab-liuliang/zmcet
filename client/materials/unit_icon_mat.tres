@@ -29,5 +29,5 @@ _data = {
 
 shader/shader = SubResource( 1 )
 shader/shading_mode = 0
-shader_param/Hue = 0.5
+shader_param/Hue = 0.0
 
