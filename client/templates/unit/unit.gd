@@ -23,7 +23,6 @@ func set(dir_, subdir_):
 	get_node("progress").set_text(lesson)
 	
 	if lesson_nums > 0:
-		print("------------------------------", lesson_nums)
 		set_hue( finish_lessons/lesson_nums)
 	else:
 		set_hue(0.0)
