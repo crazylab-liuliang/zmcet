@@ -20,9 +20,22 @@ func set(dir, lesson):
 	
 	var data_node = get_node("/root/data")
 	var accuracy = data_node.get_lesson_accuracy(lesson_md5)
-	get_node("desc").set_text(String(accuracy))
+	get_node("desc").set_text(String(accuracy) + "%")
 	
 	exercise_num = lesson_data.exercise_num.to_int()
+	
+	# texture
+	if accuracy >= 100:
+		var tex = ResourceLoader.load("res://arts/finished.png")
+		get_node("icon").set_texture(tex)
+	else:
+		var tex = ResourceLoader.load("res://arts/unfinished.png")
+		get_node("icon").set_texture(tex)
+	
+	# material
+	var material = ResourceLoader.load("res://templates/unit/icon_hue.tres").duplicate()
+	get_node("icon").set_material(material)
+	get_node("icon").get_material().set_shader_param("Hue", accuracy * 0.01)
 	
 func load_lesson():
 	var file = File.new()
