@@ -9,14 +9,15 @@
 
 [node name="bottom_bar" type="TextureFrame"]
 
+rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 375.0
-margin/bottom = 70.0
+margin/right = 750.0
+margin/bottom = 120.0
 texture = ExtResource( 1 )
 stretch_mode = 0
 script/script = ExtResource( 2 )
@@ -27,14 +28,15 @@ anchor/left = 3
 anchor/top = 3
 anchor/right = 3
 anchor/bottom = 3
+rect/scale = Vector2( 1.4, 1.4 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 82.5
-margin/top = 24.0
-margin/right = 46.5
-margin/bottom = -9.0
+margin/left = 200.0
+margin/top = 38.0
+margin/right = 142.0
+margin/bottom = -24.0
 toggle_mode = true
 is_pressed = true
 enabled_focus_mode = 2
@@ -64,14 +66,15 @@ max_lines_visible = -1
 
 [node name="me" type="TextureButton" parent="."]
 
+rect/scale = Vector2( 1.4, 1.4 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 234.0
-margin/top = 11.0
-margin/right = 367.0
-margin/bottom = 64.0
+margin/left = 539.0
+margin/top = 22.0
+margin/right = 600.0
+margin/bottom = 83.0
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null

@@ -60,10 +60,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 133.0
-margin/top = 12.0
+margin/top = 9.0
 margin/right = 219.0
-margin/bottom = 41.0
+margin/bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "选择题"
 align = 1
 valign = 1
@@ -78,9 +79,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 13.0
-margin/top = 15.0
+margin/top = 12.0
 margin/right = 35.4
-margin/bottom = 37.4
+margin/bottom = 34.4
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -88,6 +89,7 @@ textures/normal = ExtResource( 4 )
 params/resize_mode = 0
 params/scale = Vector2( 0.7, 0.7 )
 params/stretch_mode = 0
+params/modulate = Color( 0.5, 0.5, 0.5, 1 )
 
 [node name="question" type="Label" parent="."]
 
@@ -342,6 +344,8 @@ max_lines_visible = -1
 
 [node name="sound" type="SamplePlayer2D" parent="."]
 
+transform/pos = Vector2( 22.302, 20.6839 )
+transform/scale = Vector2( 0.303062, 0.353628 )
 params/volume_db = 0.0
 params/pitch_scale = 1.0
 params/attenuation/min_distance = 1.0

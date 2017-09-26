@@ -30,8 +30,8 @@ func set_course(course):
 	# show units
 	var vcontainer = get_node("ui/main/body/VBoxContainer")
 	var i = 0
-	while i < dirs.size():	
-		var rani = randi() % 3	
+	while i < dirs.size():
+		var rani = min(randi() % 3, dirs.size()-i-1)
 		var unit = null
 		if rani == 0:
 			unit = preload("res://templates/unit/units_column_1.tscn").instance()

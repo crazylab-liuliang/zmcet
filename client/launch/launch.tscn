@@ -32,6 +32,7 @@ margin/bottom = 40.0
 
 [node name="body" type="ScrollContainer" parent="ui/main"]
 
+editor/display_folded = true
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -80,7 +81,7 @@ visibility/visible = false
 
 anchor/top = 1
 anchor/bottom = 1
-margin/top = 67.0
-margin/bottom = -3.0
+margin/top = 53.0
+margin/bottom = -67.0
 
 
