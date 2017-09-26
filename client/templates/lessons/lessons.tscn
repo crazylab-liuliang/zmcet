@@ -5,7 +5,7 @@
 [ext_resource path="res://templates/unit/icon.png" type="Texture" id=3]
 [ext_resource path="res://font/dynamicfont_simhei_24.tres" type="DynamicFont" id=4]
 [ext_resource path="res://templates/lessons/item.tscn" type="PackedScene" id=5]
-[ext_resource path="res://templates/lessons/return.png" type="Texture" id=6]
+[ext_resource path="res://launch/return.png" type="Texture" id=6]
 
 [node name="lessons" type="Control"]
 
@@ -30,7 +30,7 @@ margin/top = 0.0
 margin/right = 373.0
 margin/bottom = 525.0
 texture = ExtResource( 2 )
-modulate = Color( 0.988281, 0.95607, 0.941956, 1 )
+modulate = Color( 0.945, 0.94, 0.94, 1 )
 stretch_mode = 0
 
 [node name="icon" type="TextureFrame" parent="bg"]
@@ -88,13 +88,25 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 375.0
-margin/bottom = 50.0
+margin/bottom = 158.0
 alignment = 0
 
 [node name="item" parent="body/VBoxContainer" instance=ExtResource( 5 )]
 
 margin/right = 375.0
 margin/bottom = 50.0
+
+[node name="item1" parent="body/VBoxContainer" instance=ExtResource( 5 )]
+
+margin/top = 54.0
+margin/right = 375.0
+margin/bottom = 104.0
+
+[node name="item2" parent="body/VBoxContainer" instance=ExtResource( 5 )]
+
+margin/top = 108.0
+margin/right = 375.0
+margin/bottom = 158.0
 
 [node name="return" type="TextureButton" parent="."]
 
@@ -104,15 +116,16 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 18.0
 margin/top = 20.0
-margin/right = 39.0
-margin/bottom = 50.2
+margin/right = 44.0
+margin/bottom = 46.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 6 )
 params/resize_mode = 0
-params/scale = Vector2( 0.2, 0.2 )
+params/scale = Vector2( 0.8, 0.8 )
 params/stretch_mode = 0
+params/modulate = Color( 0.5, 0.5, 0.5, 1 )
 
 [connection signal="pressed" from="return" to="." method="_on_return_pressed"]
 
