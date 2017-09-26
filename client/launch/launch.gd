@@ -4,13 +4,14 @@ var cur_course = ""
 
 func _ready():
 	set_process(true)
-	set_course("res://data/cet4/cet4.course")
 	
 func _process(delta):
 	if !has_node("/root/global"):
 		var global = load("res://global/global.gd").new()
 		global.set_name("global")
 		get_tree().get_root().add_child(global)
+		
+		set_course("res://data/cet4/cet4.course")
 		
 		
 func set_course(course):
@@ -38,11 +39,10 @@ func set_course(course):
 			unit = preload("res://templates/unit/units_column_2.tscn").instance()
 		else:
 			unit = preload("res://templates/unit/units_column_3.tscn").instance()
-			
+		
+		vcontainer.add_child(unit)
 		while i<dirs.size() and unit.add_unit(dir, dirs[i]):
 			i+=1
-			
-		vcontainer.add_child(unit)
 		
 	var unit_bottom = preload("res://templates/unit/units_bottom.tscn").instance()
 	vcontainer.add_child(unit_bottom)

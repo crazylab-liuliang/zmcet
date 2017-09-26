@@ -17,18 +17,33 @@ func set(dir_, subdir_):
 	get_node("name").set_text(unit_name)
 	
 	# lesson
-	var finish_lessons = 1
-	var lesson_nums = lesson_num(dir+subdir)
-	var lesson = String(finish_lessons) + "/" + String(lesson_nums)
+	var finishedRatio = finished_lessons_accuracy(dir+subdir)
+	var lesson = String(int(finishedRatio*100)) + "%"
 	get_node("progress").set_text(lesson)
 	
-	if lesson_nums > 0:
-		set_hue( finish_lessons/lesson_nums)
-	else:
-		set_hue(0.0)
+	if finishedRatio > 0:
+		set_hue( finishedRatio)
+	#else:
+	#	set_hue(0.0)
 	
 func lesson_num(dir):
 	return list_lessons(dir).size()
+	
+func finished_lessons_accuracy(dir):
+	var total = 0
+	var accuracy = 0
+	var data_node = get_node("/root/data")
+	for file in list_lessons(dir):
+		var lesson_file = dir + "/" + file
+		var fileHandle = File.new()
+		var lesson_md5 = fileHandle.get_md5(lesson_file)
+		accuracy += data_node.get_lesson_accuracy(lesson_md5)
+		total += 100
+	
+	if total > 0:
+		return accuracy / total
+	else:
+		return 0.0
 	
 func list_lessons(path):
 	var files = []
