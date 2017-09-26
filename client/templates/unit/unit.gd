@@ -7,6 +7,10 @@ func set(dir_, subdir_):
 	self.dir = dir_
 	self.subdir = subdir_
 	
+	# material
+	var material = ResourceLoader.load("res://templates/unit/icon_hue.tres").duplicate()
+	get_node("icon").set_material(material)
+	
 	# icon
 	var icon_path = dir+ subdir + "/icon.png"
 	var tex = ResourceLoader.load(icon_path)
@@ -23,8 +27,8 @@ func set(dir_, subdir_):
 	
 	if finishedRatio > 0:
 		set_hue( finishedRatio)
-	#else:
-	#	set_hue(0.0)
+	else:
+		set_hue(0.0)
 	
 func lesson_num(dir):
 	return list_lessons(dir).size()
