@@ -4,7 +4,7 @@ import json
 import hashlib
 
 http_domain = "http://albertlab-huanan.oss-cn-shenzhen.aliyuncs.com"
-http_url    = "/Software/shooter/update/"
+http_url    = "/Software/zm/update/"
 
 def md5( dir, file):
     fname = dir + file
