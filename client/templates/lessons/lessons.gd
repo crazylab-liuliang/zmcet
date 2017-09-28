@@ -1,6 +1,6 @@
 extends Control
 	
-func set(dir, subdir):
+func set(dir, subdir, unit):
 	# set title
 	get_node("title").set_text(subdir)
 	
@@ -17,7 +17,7 @@ func set(dir, subdir):
 	for lesson in lessons:
 		var lesson_item = load("res://templates/lessons/item.tscn").instance()
 		get_node("body/VBoxContainer").add_child(lesson_item)
-		lesson_item.set(dir+subdir+"/", lesson)
+		lesson_item.set(dir+subdir+"/", lesson, unit)
 
 func _on_return_pressed():
 	get_node("/root/launch").show("main")

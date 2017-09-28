@@ -3,13 +3,16 @@ extends Control
 export(String) var name = ""
 export(String) var desc = ""
 
+var unit = null
 var lesson_file = ""
 var lesson_md5 = ""
 var lesson_data = {}
 var exercise_num = 0
 var current_exercise = 0
 	
-func set(dir, lesson):
+func set(dir, lesson, unit_):
+	unit = unit_
+	
 	lesson_file = dir + lesson
 	load_lesson()
 	
@@ -18,6 +21,9 @@ func set(dir, lesson):
 	get_node("name").set_text(name)
 	get_node("desc").set_text(desc)
 	
+	update_display_by_accuracy()
+	
+func update_display_by_accuracy():
 	var data_node = get_node("/root/data")
 	var accuracy = data_node.get_lesson_accuracy(lesson_md5)
 	get_node("desc").set_text(String(accuracy) + "%")
@@ -62,4 +68,8 @@ func show_exercise():
 			get_node("/root/launch").show("choice")
 	else:
 		get_node("/root/data").on_learned_lesson(lesson_md5, 100)
+		update_display_by_accuracy()
+		if unit!=null:
+			unit.update_hue()
+		
 		get_node("/root/launch").show("lessons")

@@ -21,6 +21,9 @@ func set(dir_, subdir_):
 	get_node("name").set_text(unit_name)
 	
 	# lesson
+	update_hue()
+	
+func update_hue():
 	var finishedRatio = finished_lessons_accuracy(dir+subdir)
 	var lesson = String(int(finishedRatio*100)) + "%"
 	get_node("progress").set_text(lesson)
@@ -67,7 +70,7 @@ func list_lessons(path):
 
 func _on_icon_pressed():
 	if has_node("/root/launch"):
-		get_node("/root/launch").on_unit_clicked(dir, subdir)
+		get_node("/root/launch").on_unit_clicked(dir, subdir, self)
 		
 func set_hue(hue):
 	get_node("icon").get_material().set_shader_param("Hue", hue)
