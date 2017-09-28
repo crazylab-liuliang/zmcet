@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
 [ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://templates/me/me.tscn" type="PackedScene" id=3]
 [ext_resource path="res://templates/lessons/lessons.tscn" type="PackedScene" id=4]
-[ext_resource path="res://templates/bankedcloze/bankedcloze.tscn" type="PackedScene" id=5]
-[ext_resource path="res://templates/choice/choice.tscn" type="PackedScene" id=6]
-[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://templates/choice/choice.tscn" type="PackedScene" id=5]
+[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=6]
 
 [node name="launch" type="Node"]
 
@@ -21,6 +20,7 @@ scale = Vector2( 1, 1 )
 
 [node name="main" type="Control" parent="ui"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -69,15 +69,11 @@ visibility/visible = false
 
 visibility/visible = false
 
-[node name="bankedcloze" parent="ui" instance=ExtResource( 5 )]
+[node name="choice" parent="ui" instance=ExtResource( 5 )]
 
 visibility/visible = false
 
-[node name="choice" parent="ui" instance=ExtResource( 6 )]
-
-visibility/visible = false
-
-[node name="bottom_bar" parent="ui" instance=ExtResource( 7 )]
+[node name="bottom_bar" parent="ui" instance=ExtResource( 6 )]
 
 anchor/top = 1
 anchor/bottom = 1

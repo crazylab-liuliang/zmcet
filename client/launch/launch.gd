@@ -85,7 +85,7 @@ func show(type):
 	get_node("ui/main").set_hidden(true)
 	get_node("ui/me").set_hidden(true)
 	get_node("ui/lessons").set_hidden(true)
-	get_node("ui/bankedcloze").set_hidden(true)
+	#get_node("ui/bankedcloze").set_hidden(true)
 	get_node("ui/choice").set_hidden(true)
 	get_node("ui/bottom_bar").set_hidden(true)
 	
@@ -94,8 +94,8 @@ func show(type):
 		get_node("ui/bottom_bar").set_hidden(false)
 	if type=="lessons":
 		get_node("ui/lessons").set_hidden(false)
-	if type=="bankedcloze":
-		get_node("ui/bankedcloze").set_hidden(false)
+	#if type=="bankedcloze":
+	#	get_node("ui/bankedcloze").set_hidden(false)
 	if type=="me":
 		get_node("ui/me").set_hidden(false)
 		get_node("ui/bottom_bar").set_hidden(false)	
