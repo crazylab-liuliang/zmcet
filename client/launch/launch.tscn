@@ -9,6 +9,7 @@
 
 [node name="launch" type="Node"]
 
+editor/display_folded = true
 script/script = ExtResource( 1 )
 
 [node name="ui" type="CanvasLayer" parent="."]
