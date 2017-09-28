@@ -199,7 +199,7 @@ func update_progress_val():
 		is_ready_for_start = true
 			
 func set_text(text):
-	get_node("progress/note").set_text(text)
+	get_node("note").set_text(text)
 	
 func copy_from_downloaddir_to_gamedir():
 	var files = list_files_in_directory(download_dir)

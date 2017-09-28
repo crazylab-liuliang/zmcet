@@ -207,14 +207,16 @@ align = 0
 
 [node name="check" type="TextureButton" parent="."]
 
+anchor/top = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 42.0
-margin/top = 604.0
+margin/top = -604.0
 margin/right = 332.0
-margin/bottom = 637.0
+margin/bottom = -637.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -227,14 +229,16 @@ params/stretch_mode = 0
 [node name="continue" type="TextureButton" parent="."]
 
 visibility/visible = false
+anchor/top = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 42.0
-margin/top = 604.0
+margin/top = -604.0
 margin/right = 332.0
-margin/bottom = 637.0
+margin/bottom = -637.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -245,15 +249,18 @@ params/stretch_mode = 0
 
 [node name="hint_correct" type="TextureFrame" parent="."]
 
+editor/display_folded = true
+anchor/top = 1
+anchor/bottom = 1
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = -2.0
-margin/top = 354.0
+margin/top = -354.0
 margin/right = 673.0
-margin/bottom = 706.0
+margin/bottom = -706.0
 texture = ExtResource( 9 )
 stretch_mode = 0
 
@@ -295,15 +302,18 @@ max_lines_visible = -1
 
 [node name="hint_wrong" type="TextureFrame" parent="."]
 
+editor/display_folded = true
+anchor/top = 1
+anchor/bottom = 1
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = -2.0
-margin/top = 354.0
+margin/top = -354.0
 margin/right = 688.0
-margin/bottom = 706.0
+margin/bottom = -706.0
 texture = ExtResource( 10 )
 stretch_mode = 0
 

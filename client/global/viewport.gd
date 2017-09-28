@@ -5,9 +5,8 @@ onready var viewport = get_viewport()
 var minimum_size = Vector2(375, 667)
 
 func _ready():
-    #viewport.connect("size_changed", self, "window_resize")
-    #window_resize()
-	pass
+    viewport.connect("size_changed", self, "window_resize")
+    window_resize()
 
 func window_resize():
     var current_size = OS.get_window_size()
