@@ -29,7 +29,7 @@ def gen_version_info( file):
 dirs = os.listdir(root_path)
 dirs.sort()
 for file in dirs:
-    if os.path.splitext(file)[1] == '.pck':
+    if os.path.splitext(file)[1] == '.pck' or os.path.splitext(file)[1]=='.zip':
         gen_version_info( file)
 
 version_file.writelines("</pcks>")

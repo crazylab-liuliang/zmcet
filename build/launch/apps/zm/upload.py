@@ -20,7 +20,7 @@ root_path = os.getcwd() + '/'
 dirs = os.listdir(root_path)
 dirs.sort()
 for file in dirs:
-    if os.path.splitext(file)[1] == '.pck':
+    if os.path.splitext(file)[1] == '.pck' or os.path.splitext(file)[1] == '.zip':
         oss2.resumable_upload(bucket, "Software/zm/update/" + file, file, multipart_threshold=100*1024)
         print("upload file [%s] to ALIYUN oss" % file)
         print("upload files finished")
