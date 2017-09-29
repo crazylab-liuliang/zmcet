@@ -11,10 +11,8 @@ func _process(delta):
 		global.set_name("global")
 		get_tree().get_root().add_child(global)
 		
-		get_node("ui/update").run()
-		
-		#set_course("res://data/cet4/cet4.course")
-		
+		var current_course = get_node("/root/data").get_current_course("cet4")	
+		set_course("res://courses/" + current_course + "/")
 		
 func set_course(course):
 	cur_course = course;

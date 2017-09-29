@@ -20,8 +20,8 @@ func select_course(course):
 	
 	save()
 	
-func get_current_course():
-	return config_file.get_value("data", "current_course")	
+func get_current_course(default):
+	return config_file.get_value("data", "current_course", default)	
 
 func on_learned_lesson(lesson, accuracy):
 	var lesson_dict = {}
