@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
-[ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://templates/me/me.tscn" type="PackedScene" id=3]
-[ext_resource path="res://templates/lessons/lessons.tscn" type="PackedScene" id=4]
-[ext_resource path="res://templates/choice/choice.tscn" type="PackedScene" id=5]
-[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://launch/update/update.tscn" type="PackedScene" id=2]
+[ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://templates/me/me.tscn" type="PackedScene" id=4]
+[ext_resource path="res://templates/lessons/lessons.tscn" type="PackedScene" id=5]
+[ext_resource path="res://templates/choice/choice.tscn" type="PackedScene" id=6]
+[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=7]
 
 [node name="launch" type="Node"]
 
@@ -17,6 +18,8 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+
+[node name="update" parent="ui" instance=ExtResource( 2 )]
 
 [node name="main" type="Control" parent="ui"]
 
@@ -59,21 +62,21 @@ margin/bottom = 0.0
 custom_constants/separation = 0
 alignment = 0
 
-[node name="head_bar" parent="ui/main" instance=ExtResource( 2 )]
+[node name="head_bar" parent="ui/main" instance=ExtResource( 3 )]
 
-[node name="me" parent="ui" instance=ExtResource( 3 )]
-
-visibility/visible = false
-
-[node name="lessons" parent="ui" instance=ExtResource( 4 )]
+[node name="me" parent="ui" instance=ExtResource( 4 )]
 
 visibility/visible = false
 
-[node name="choice" parent="ui" instance=ExtResource( 5 )]
+[node name="lessons" parent="ui" instance=ExtResource( 5 )]
 
 visibility/visible = false
 
-[node name="bottom_bar" parent="ui" instance=ExtResource( 6 )]
+[node name="choice" parent="ui" instance=ExtResource( 6 )]
+
+visibility/visible = false
+
+[node name="bottom_bar" parent="ui" instance=ExtResource( 7 )]
 
 anchor/top = 1
 anchor/bottom = 1

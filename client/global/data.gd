@@ -14,6 +14,15 @@ func _ready():
 		finished_lessons_str = config_file.get_value("data", "finished_lessons", finished_lessons.to_json())
 		finished_lessons.parse_json(finished_lessons_str)
 	
+
+func select_course(course):
+	config_file.set_value("data", "current_course", course)
+	
+	save()
+	
+func get_current_course():
+	return config_file.get_value("data", "current_course")	
+
 func on_learned_lesson(lesson, accuracy):
 	var lesson_dict = {}
 	lesson_dict["accuracy"] = accuracy

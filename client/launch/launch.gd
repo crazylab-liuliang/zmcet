@@ -11,7 +11,9 @@ func _process(delta):
 		global.set_name("global")
 		get_tree().get_root().add_child(global)
 		
-		set_course("res://data/cet4/cet4.course")
+		get_node("ui/update").run()
+		
+		#set_course("res://data/cet4/cet4.course")
 		
 		
 func set_course(course):
@@ -21,6 +23,12 @@ func set_course(course):
 	
 	# setting icon
 	var course_icon = dir + "icon.png"
+	
+	var dir = Directory.new()
+	if dir.file_exists(course_icon):
+		print("aaaaaaaaaaaaaaaaaa")
+	
+	
 	get_node("ui/main/head_bar").set_course_icon(course_icon)
 	
 	#
