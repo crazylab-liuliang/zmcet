@@ -20,8 +20,6 @@ func run():
 	if current_course != null:
 		mount_course(current_course)
 		
-		var files = list_files_in_directory("res://courses/" + current_course + "/")
-		
 		get_node("/root/launch").set_course("res://courses/" + current_course + "/")
 		
 func mount_course(course_name):

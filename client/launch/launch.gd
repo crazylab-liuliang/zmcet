@@ -24,13 +24,7 @@ func set_course(course):
 	# setting icon
 	var course_icon = dir + "icon.png"
 	
-	var dir = Directory.new()
-	if dir.file_exists(course_icon):
-		print("aaaaaaaaaaaaaaaaaa")
-	
-	
 	get_node("ui/main/head_bar").set_course_icon(course_icon)
-	
 	#
 	var dirs = list_subdirectorys_in_directory(dir)
 	print(dirs)
