@@ -235,10 +235,9 @@ func create_dir(dir):
 func list_files_in_directory(path):
 	var files = []
 	var dir = Directory.new()
-	if not dir.dir_exists(path):
+	if dir.open(path)!=OK:
 		return files
-	
-	dir.open(path)
+		
 	dir.list_dir_begin()
 	while true:
 		var file = dir.get_next()
