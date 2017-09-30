@@ -235,6 +235,9 @@ func create_dir(dir):
 func list_files_in_directory(path):
 	var files = []
 	var dir = Directory.new()
+	if not dir.dir_exists(path):
+		return files
+	
 	dir.open(path)
 	dir.list_dir_begin()
 	while true:
@@ -254,7 +257,7 @@ func mount_res():
 	for i in range(version_meta.get_pck_size()):
 		var pck = version_meta.get_pck(i)
 		Globals.load_resource_pack(game_dir + pck.name)
-		if pck.name.extension() == "pck":
+		if pck.name == "app.pck":
 			Globals.reload_settings_binary("res://engine.cfb")
 		
 func is_mount_res_finished():
