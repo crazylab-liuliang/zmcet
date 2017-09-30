@@ -12,7 +12,7 @@ func _process(delta):
 		get_tree().get_root().add_child(global)
 		
 		var dir = Directory.new()
-		if not dir.dir_exists("res://courses/"):
+		if not dir.file_exists("res://courses/catalogue/catalogue.json"):
 			set_course("res://courses_example/example/")
 		else:
 			var current_course = get_node("/root/data").get_current_course("cet4")	
