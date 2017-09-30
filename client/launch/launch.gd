@@ -11,8 +11,12 @@ func _process(delta):
 		global.set_name("global")
 		get_tree().get_root().add_child(global)
 		
-		var current_course = get_node("/root/data").get_current_course("cet4")	
-		set_course("res://courses/" + current_course + "/")
+		var dir = Directory.new()
+		if not dir.dir_exists("res://courses/"):
+			set_course("res://courses_example/example/")
+		else:
+			var current_course = get_node("/root/data").get_current_course("cet4")	
+			set_course("res://courses/" + current_course + "/")
 		
 func set_course(course):
 	cur_course = course;
