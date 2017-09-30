@@ -54,7 +54,9 @@ func set_course(course):
 func list_files_in_directory(path):
 	var files = []
 	var dir = Directory.new()
-	dir.open(path)
+	if dir.open(path)!=OK:
+		return files
+	
 	dir.list_dir_begin()
 	while true:
 		var file = dir.get_next()
