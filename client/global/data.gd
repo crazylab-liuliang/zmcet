@@ -41,6 +41,9 @@ func get_lesson_accuracy(lesson_md5):
 		return finished_lessons[lesson_md5]["accuracy"]
 	else:
 		return 0
+		
+func get_exp():
+	return 50.0 * finished_lessons.size()
 
 func save():
 	config_file.set_value("data", "finished_lessons", finished_lessons.to_json())

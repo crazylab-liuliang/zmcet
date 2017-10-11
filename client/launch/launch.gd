@@ -104,6 +104,7 @@ func show(type):
 	#	get_node("ui/bankedcloze").set_hidden(false)
 	if type=="me":
 		get_node("ui/me").set_hidden(false)
+		get_node("ui/me").on_display()
 		get_node("ui/bottom_bar").set_hidden(false)	
 	if type=="choice":
 		get_node("ui/choice").set_hidden(false)
