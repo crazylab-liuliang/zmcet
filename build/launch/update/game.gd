@@ -17,6 +17,9 @@ var auto_update = true
 func _ready():
 	set_process(true)
 	
+	get_node("note").set_hidden(true)
+	get_node("progress").set_opacity(0.0)
+	
 func _process(delta):
 	# 启动游戏 
 	if is_ready_for_start and auto_start and not is_mounted:
@@ -92,7 +95,7 @@ func checkupdate():
 func _on_loading_version(loaded, total, file_save_path):
 	var percent = min(loaded * 100 / total,60)
 	print(percent)
-	get_node("progress").set_val(percent)
+	#get_node("progress").set_opacity(0.0)
 
 func _on_loaded_version(result, file_save_path):
 	var directory = Directory.new()
@@ -105,14 +108,13 @@ func _on_loaded_version(result, file_save_path):
 		for i in range(remote_meta.get_pck_size()):
 			var remote_pck = remote_meta.get_pck(i)
 			if !local_meta.is_pck_exist(remote_pck.name):
-				print("ri")
 				need_update_pcks.append(remote_pck)
 			else:
 				var local_pck = local_meta.get_pck_by_name(remote_pck.name)
 				if local_pck.md5 != remote_pck.md5:
 					need_update_pcks.append(remote_pck)	
 					
-		get_node("progress").set_val(100)
+		#get_node("progress").set_opacity(0.0)
 	
 	if need_update_pcks.size()>0:
 		download_pcks()
@@ -192,13 +194,14 @@ func update_progress_val():
 		
 		download_percent = download  * 100 / total
 	
-	get_node("progress").set_val(download_percent)
+	get_node("progress").set_opacity(download_percent*0.01)
 	set_text("%d" % download_percent + "%")
 	
 	if download_percent >=100:
 		is_ready_for_start = true
 			
 func set_text(text):
+	get_node("note").set_hidden(false)
 	get_node("note").set_text(text)
 	
 func copy_from_downloaddir_to_gamedir():
