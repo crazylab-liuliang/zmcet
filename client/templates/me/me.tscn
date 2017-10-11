@@ -29,14 +29,18 @@ stretch_mode = 0
 
 [node name="Label" type="Label" parent="."]
 
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 2.0
-margin/top = 271.0
-margin/right = 374.0
-margin/bottom = 314.0
+margin/left = 185.5
+margin/top = 67.0
+margin/right = -186.5
+margin/bottom = 24.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Energy Points: 0"

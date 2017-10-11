@@ -1,0 +1,70 @@
+{
+	"title":"必备小常识",
+	"desc":"",
+	"exercise_num" : "5",
+	"exercise_0" : {
+		"type" : "choice",
+		"question":"大学英语四级考试的缩写是?",
+		"options": {
+			"A" : "CET-4",
+			"B" : "ACT-4",
+			"C" : "ETC-4",
+			"D" : "TEC-4"
+		},
+		"answer" : "A",
+		"hint" : "CET-4 (College English Test Band 4)"
+	},
+
+	"exercise_1" : {
+		"type" : "choice",
+		"question":"大学英语四级每年可以考几次?",
+		"options": {
+			"A" : "一次",
+			"B" : "两次",
+			"C" : "三次",
+			"D" : "四次"
+		},
+		"answer" : "B",
+		"hint" : "两次(每年的6月和12月)"
+	},
+
+	"exercise_2" : {
+		"type" : "choice",
+		"question":"大学英语四级考试一共有几个部分?",
+		"options": {
+			"A" : "一部分",
+			"B" : "两部分",
+			"C" : "三部分",
+			"D" : "四部分"
+		},
+		"answer" : "D",
+		"hint" : "四部分（写作、听力、阅读、翻译）"
+	},
+
+	"exercise_3" : {
+		"type" : "choice",
+		"question":"大学英语四级考试的总分是多少?",
+		"options": {
+			"A" : "600",
+			"B" : "650",
+			"C" : "700",
+			"D" : "710"
+		},
+		"answer" : "D",
+		"hint" : "710分（全国大学英语四六级规定：英语四级成绩达到425以上（含425）者，可以报考英语四级。一般认为英语四级的及格级是425分）"
+	},
+
+	"exercise_4" : {
+		"type" : "choice",
+		"question":"听力部分的分数占总分的比例为?",
+		"options": {
+			"A" : "20%",
+			"B" : "25%",
+			"C" : "30%",
+			"D" : "35%"
+		},
+		"answer" : "D",
+		"hint" : "35%(听力35%，阅读35%，翻译15%，写作15%)"
+	}
+	}
+}

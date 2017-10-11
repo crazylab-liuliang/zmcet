@@ -18,7 +18,15 @@ func set(dir_, subdir_):
 	
 	# text
 	var unit_name = subdir
-	get_node("name").set_text(unit_name)
+	var unit_text = unit_name
+	
+	var start_idx = unit_text.find(".")
+	if start_idx > 0:
+		start_idx = start_idx + 1
+		var str_len = unit_text.length() - start_idx
+		unit_text = unit_text.substr(start_idx, str_len)
+		
+	get_node("name").set_text(unit_text)
 	
 	# lesson
 	update_hue()
