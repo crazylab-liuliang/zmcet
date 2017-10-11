@@ -122,11 +122,7 @@ func _on_loaded_version(result, file_save_path):
 		update_progress_val()
 		
 func is_pck_downloaded(pck):
-	var dir = Directory.new()
-	if dir.file_exists(download_dir + pck.name):
-		return true
-	else:
-		return false
+	return is_pck_existed_in_dir(download_dir, pck.name)
 	
 func is_pck_md5_match(pck_name):
 	var pck = remote_meta.get_pck_by_name(pck_name)
@@ -136,14 +132,37 @@ func is_pck_md5_match(pck_name):
 	if md5==pck.md5:
 		return true
 	else:
-		return false	
+		return false
+		
+func is_pck_existed_in_dir(dir, pck_name):
+	var dirobj = Directory.new()
+	if dirobj.file_exists(dir + pck_name):
+		return true
+	else:
+		return false
+		
+func is_pck_md5_match_in_res_dir(pck_name):
+	var pck = remote_meta.get_pck_by_name(pck_name)
+	var md5 = ""
+	var file = File.new()
+	md5 = file.get_md5(game_res_dir + pck_name)
+	if md5==pck.md5:
+		return true
+	else:
+		return false
 	
 func download_pcks():
 	for pck in need_update_pcks:
 		if is_pck_downloaded(pck) && is_pck_md5_match(pck.name):
+			# 检测是否已下载完成,断点续传
 			set_percent(pck.name, 100)
 			if download_percent==100:
 				copy_from_downloaddir_to_gamedir()
+				
+		if is_pck_existed_in_dir(game_res_dir, pck.name) && is_pck_md5_match_in_res_dir(pck.name):
+			# 检测本地是否已拥有此资源
+			copy_pck_from_res_dir_to_update_dir(pck.name)
+			set_percent(pck.name, 100)
 		else:
 			down_load_pck(pck.name)		
 		
@@ -213,6 +232,13 @@ func copy_from_downloaddir_to_gamedir():
 			
 	clear_dir(download_dir)
 	clear_nousedpck_in_game_dir()
+	
+func copy_pck_from_res_dir_to_update_dir(pck_name):
+	var dir = Directory.new()
+	if dir.copy(game_res_dir + pck_name, download_dir + pck_name):
+		print("copy %s failed" % pck_name)
+	else:
+		print( "copy_pck_from_res_dir_to_update_dir [%s]" % pck_name)
 	
 func clear_nousedpck_in_game_dir():
 	var version_meta = load("res://update/version_meta.gd").new()
