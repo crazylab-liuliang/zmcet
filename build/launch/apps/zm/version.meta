@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pcks domain="http://albertlab-huanan.oss-cn-shenzhen.aliyuncs.com" url="/Software/zm/update/">
-	<pck name="app.pck" md5="f405762ba90b9a2853972e3c933c3c29" />
+	<pck name="app.pck" md5="acf2bab01fe4be59d0b74cbda4091c20" />
 	<pck name="catalogue.pck" md5="993c2acf19cf92fde1f10492f937262b" />
 	<pck name="cet4.pck" md5="2000f0763f2d6f876eb4288ea9b31685" />
 </pcks>
