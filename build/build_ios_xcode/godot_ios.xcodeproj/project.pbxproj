@@ -167,8 +167,8 @@
 				ORGANIZATIONNAME = GodotEngine;
 				TargetAttributes = {
 					D0BCFE3318AEBDA2004A7AAE = {
-						DevelopmentTeam = R4D6FAMP6T;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = W35EUXNUC6;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -319,14 +319,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				DEVELOPMENT_TEAM = R4D6FAMP6T;
+				DEVELOPMENT_TEAM = W35EUXNUC6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "godot_ios/godot_ios-Prefix.pch";
 				INFOPLIST_FILE = "godot_ios/godot_ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crazylab.zm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crazylab.zm.main;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3ed65ecf-1d33-42d4-8bc6-8080df5eae53";
+				PROVISIONING_PROFILE_SPECIFIER = com.crazylab.zm.development;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -341,14 +342,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ariel Manzur (BYC57PA2Q5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				DEVELOPMENT_TEAM = R4D6FAMP6T;
+				DEVELOPMENT_TEAM = W35EUXNUC6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "godot_ios/godot_ios-Prefix.pch";
 				INFOPLIST_FILE = "godot_ios/godot_ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.crazylab.zm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.crazylab.zm.main;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "3ed65ecf-1d33-42d4-8bc6-8080df5eae53";
+				PROVISIONING_PROFILE_SPECIFIER = com.crazylab.zm.development;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
