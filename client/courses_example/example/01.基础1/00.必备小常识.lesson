@@ -4,12 +4,12 @@
 	"exercise_num" : "6",
 	"exercise_0" : {
 		"type" : "choice",
-		"question":"大学英语四级考试的缩写是?",
+		"question":"我是单选题目，答案为A",
 		"options": {
-			"A" : "CET-4",
-			"B" : "ACT-4",
-			"C" : "ETC-4",
-			"D" : "TEC-4"
+			"A" : "我是唯一的正确答案",
+			"B" : "不要选我",
+			"C" : "不可能是我",
+			"D" : "看都不要看我"
 		},
 		"answer" : "A",
 		"hint" : "CET-4 (College English Test Band 4)"
@@ -17,14 +17,14 @@
 
 	"exercise_1" : {
 		"type" : "choice",
-		"question":"大学英语四级每年可以考几次?",
+		"question":"我是多选题目，答案是AB",
 		"options": {
-			"A" : "一次",
-			"B" : "两次",
-			"C" : "三次",
-			"D" : "四次"
+			"A" : "我是正确答案1",
+			"B" : "我是正确答案2",
+			"C" : "我是错误答案，不要选我",
+			"D" : "我也是错误答案"
 		},
-		"answer" : "B",
+		"answer" : "AB",
 		"hint" : "两次(每年的6月和12月)"
 	},
 

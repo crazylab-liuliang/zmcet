@@ -112,7 +112,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="vbc_s" type="VBoxContainer" parent="."]
+[node name="vbc_s" type="ButtonGroup" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -140,6 +140,7 @@ custom_colors/font_color = Color( 0.47451, 0.47451, 0.47451, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.47451, 0.47451, 0.47451, 1 )
 toggle_mode = true
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
 flat = false
@@ -152,15 +153,16 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 31.0
+margin/top = 27.0
 margin/right = 354.0
-margin/bottom = 58.0
+margin/bottom = 54.0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color_disabled = Color( 0.47451, 0.47451, 0.47451, 1 )
 custom_colors/font_color = Color( 0.47451, 0.47451, 0.47451, 1 )
 custom_colors/font_color_hover = Color( 255, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.47451, 0.47451, 0.47451, 1 )
 toggle_mode = true
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
 flat = false
@@ -173,15 +175,16 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 62.0
+margin/top = 54.0
 margin/right = 354.0
-margin/bottom = 89.0
+margin/bottom = 81.0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color_disabled = Color( 0.47451, 0.47451, 0.47451, 1 )
 custom_colors/font_color = Color( 0.47451, 0.47451, 0.47451, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.47451, 0.47451, 0.47451, 1 )
 toggle_mode = true
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
 flat = false
@@ -194,15 +197,16 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 93.0
+margin/top = 81.0
 margin/right = 354.0
-margin/bottom = 120.0
+margin/bottom = 108.0
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color_disabled = Color( 0.47451, 0.47451, 0.47451, 1 )
 custom_colors/font_color = Color( 0.47451, 0.47451, 0.47451, 1 )
 custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
 custom_colors/font_color_pressed = Color( 0.47451, 0.47451, 0.47451, 1 )
 toggle_mode = true
+click_on_press = true
 enabled_focus_mode = 2
 shortcut = null
 flat = false
@@ -477,6 +481,14 @@ config/pitch_random = 0.0
 [connection signal="toggled" from="vbc_s/C" to="." method="_on_choice_toggled"]
 
 [connection signal="toggled" from="vbc_s/D" to="." method="_on_choice_toggled"]
+
+[connection signal="toggled" from="vbc_m/A" to="." method="_on_choice_toggled"]
+
+[connection signal="toggled" from="vbc_m/B" to="." method="_on_choice_toggled"]
+
+[connection signal="toggled" from="vbc_m/C" to="." method="_on_choice_toggled"]
+
+[connection signal="toggled" from="vbc_m/D" to="." method="_on_choice_toggled"]
 
 [connection signal="pressed" from="check" to="." method="_on_check_pressed"]
 
