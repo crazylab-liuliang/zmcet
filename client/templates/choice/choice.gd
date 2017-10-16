@@ -51,12 +51,12 @@ func _on_check_pressed():
 
 	if answer == exercise_data.answer:
 		is_answer_right = true
-		get_node("hint_correct/hint").set_text(exercise_data.hint)
+		get_node("hint_correct/hint").set_bbcode(exercise_data.hint)
 		get_node("hint_correct").set_hidden(false)
 		get_node("sound").play("correct")
 	else:
 		is_answer_right = false
-		get_node("hint_wrong/hint").set_text(exercise_data.hint)
+		get_node("hint_wrong/hint").set_bbcode(exercise_data.hint)
 		get_node("hint_wrong").set_hidden(false)
 		get_node("sound").play("wrong")
 		

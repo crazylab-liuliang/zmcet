@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://templates/choice/choice.gd" type="Script" id=1]
 [ext_resource path="res://launch/head_bg.png" type="Texture" id=2]
@@ -9,9 +9,10 @@
 [ext_resource path="res://arts/check_bg_disabled.png" type="Texture" id=7]
 [ext_resource path="res://arts/continue_bg.png" type="Texture" id=8]
 [ext_resource path="res://arts/hint_correct_bg.png" type="Texture" id=9]
-[ext_resource path="res://arts/hint_error_bg.png" type="Texture" id=10]
-[ext_resource path="res://arts/correct.wav" type="Sample" id=11]
-[ext_resource path="res://arts/wrong.wav" type="Sample" id=12]
+[ext_resource path="res://font/dynamicfont_simhei_32.tres" type="DynamicFont" id=10]
+[ext_resource path="res://arts/hint_error_bg.png" type="Texture" id=11]
+[ext_resource path="res://arts/correct.wav" type="Sample" id=12]
+[ext_resource path="res://arts/wrong.wav" type="Sample" id=13]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -19,13 +20,13 @@ samples/correct = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 11 )
+"sample": ExtResource( 12 )
 }
 samples/wrong = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 12 )
+"sample": ExtResource( 13 )
 }
 
 [node name="choice" type="Control"]
@@ -355,7 +356,6 @@ params/stretch_mode = 0
 
 [node name="hint_correct" type="TextureFrame" parent="."]
 
-editor/display_folded = true
 anchor/top = 1
 anchor/bottom = 1
 rect/scale = Vector2( 0.5, 0.5 )
@@ -388,27 +388,23 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="hint" type="Label" parent="hint_correct"]
+[node name="hint" type="RichTextLabel" parent="hint_correct"]
 
-rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 50.0
 margin/top = 76.0
-margin/right = 333.0
-margin/bottom = 191.0
-custom_fonts/font = ExtResource( 5 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+margin/right = 616.0
+margin/bottom = 306.0
+custom_fonts/normal_font = ExtResource( 10 )
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
 
 [node name="hint_wrong" type="TextureFrame" parent="."]
 
-editor/display_folded = true
 anchor/top = 1
 anchor/bottom = 1
 rect/scale = Vector2( 0.5, 0.5 )
@@ -420,7 +416,7 @@ margin/left = -2.0
 margin/top = 323.0
 margin/right = 688.0
 margin/bottom = -29.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 stretch_mode = 0
 
 [node name="correct" type="Label" parent="hint_wrong"]
@@ -441,23 +437,20 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="hint" type="Label" parent="hint_wrong"]
+[node name="hint" type="RichTextLabel" parent="hint_wrong"]
 
-rect/scale = Vector2( 2, 2 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 50.0
 margin/top = 76.0
-margin/right = 332.0
-margin/bottom = 191.0
-custom_fonts/font = ExtResource( 5 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+margin/right = 614.0
+margin/bottom = 306.0
+custom_fonts/normal_font = ExtResource( 10 )
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
 
 [node name="sound" type="SamplePlayer2D" parent="."]
 
