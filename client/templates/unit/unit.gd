@@ -56,7 +56,7 @@ func finished_lessons_accuracy(dir):
 		total += 100
 	
 	if total > 0:
-		return accuracy / total
+		return float(accuracy) / float(total)
 	else:
 		return 0.0
 	
