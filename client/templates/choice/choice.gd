@@ -23,10 +23,10 @@ func set_data(data, exercises_):
 		get_node("vbc_s").set_hidden(true)
 		get_node("vbc_m").set_hidden(false)
 	
-	node_vbc.get_node("A").set_text(exercise_data.options.A)
-	node_vbc.get_node("B").set_text(exercise_data.options.B)
-	node_vbc.get_node("C").set_text(exercise_data.options.C)
-	node_vbc.get_node("D").set_text(exercise_data.options.D)
+	node_vbc.get_node("A/text").set_text("\t" + exercise_data.options.A)
+	node_vbc.get_node("B/text").set_text("\t" +exercise_data.options.B)
+	node_vbc.get_node("C/text").set_text("\t" +exercise_data.options.C)
+	node_vbc.get_node("D/text").set_text("\t" +exercise_data.options.D)
 
 	get_node("check").set_hidden(false)
 	get_node("check").set_disabled(true)
