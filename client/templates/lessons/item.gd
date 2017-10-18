@@ -9,8 +9,10 @@ var lesson_md5 = ""
 var lesson_data = {}
 var exercise_num = 0
 var current_exercise = 0
+var current_score = 0
 	
 func set(dir, lesson, unit_):
+	current_score = 0
 	unit = unit_
 	
 	lesson_file = dir + lesson
@@ -55,7 +57,10 @@ func _on_on_click_pressed():
 	current_exercise = 0
 	show_exercise()
 			
-func next_exercise():
+func next_exercise(right):
+	if right:
+		current_score +=1
+	
 	current_exercise += 1
 	show_exercise()
 	
@@ -67,7 +72,8 @@ func show_exercise():
 			get_node("/root/launch/ui/choice").set_data(exercise_data, self)
 			get_node("/root/launch").show("choice")
 	else:
-		get_node("/root/data").on_learned_lesson(lesson_md5, 100)
+		var accuracy = int(clamp(float(current_score) / float(exercise_num) * 100, 0, 100))
+		get_node("/root/data").on_learned_lesson(lesson_md5, accuracy)
 		update_display_by_accuracy()
 		if unit!=null:
 			unit.update_hue()
