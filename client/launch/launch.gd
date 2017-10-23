@@ -15,7 +15,7 @@ func _process(delta):
 		if not dir.file_exists("res://courses/catalogue/catalogue.json"):
 			set_course("res://courses_example/example/")
 		else:
-			var current_course = get_node("/root/data").get_current_course("cet4")	
+			var current_course = get_node("/root/data").get_current_course()	
 			set_course("res://courses/" + current_course + "/")
 		
 func set_course(course):
