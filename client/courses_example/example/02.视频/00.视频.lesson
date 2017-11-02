@@ -4,6 +4,6 @@
 	"exercise_num" : "1",
 	"exercise_0" : {
 		"type" : "video",
-		"url":"http://github.com/test_video.mp4"
+		"url":"res://courses_example/example/02.视频/test_video.mp4"
 	}
 }
