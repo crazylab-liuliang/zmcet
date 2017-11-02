@@ -71,6 +71,9 @@ func show_exercise():
 		if type=="choice":
 			get_node("/root/launch/ui/choice").set_data(exercise_data, self)
 			get_node("/root/launch").show("choice")
+		elif type=="video":
+			get_node("/root/launch/ui/video").set_data(exercise_data, self)
+			get_node("/root/launch").show("video")
 	else:
 		var accuracy = int(clamp(float(current_score) / float(exercise_num) * 100, 0, 100))
 		get_node("/root/data").on_learned_lesson(lesson_md5, accuracy)

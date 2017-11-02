@@ -1,0 +1,9 @@
+{
+	"title":"Police TV Chapter 1",
+	"desc":"",
+	"exercise_num" : "1",
+	"exercise_0" : {
+		"type" : "video",
+		"url":"http://github.com/test_video.mp4"
+	}
+}

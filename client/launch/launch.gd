@@ -93,6 +93,7 @@ func show(type):
 	get_node("ui/lessons").set_hidden(true)
 	#get_node("ui/bankedcloze").set_hidden(true)
 	get_node("ui/choice").set_hidden(true)
+	get_node("ui/video").set_hidden(true)
 	get_node("ui/bottom_bar").set_hidden(true)
 	
 	if type=="main":
@@ -108,4 +109,6 @@ func show(type):
 		get_node("ui/bottom_bar").set_hidden(false)	
 	if type=="choice":
 		get_node("ui/choice").set_hidden(false)
+	if type=="video":
+		get_node("ui/video").set_hidden(false)
 		

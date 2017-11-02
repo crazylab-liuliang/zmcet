@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
 [ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://templates/me/me.tscn" type="PackedScene" id=3]
 [ext_resource path="res://templates/lessons/lessons.tscn" type="PackedScene" id=4]
 [ext_resource path="res://templates/choice/choice.tscn" type="PackedScene" id=5]
-[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://templates/video/video.tscn" type="PackedScene" id=6]
+[ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=7]
 
 [node name="launch" type="Node"]
 
@@ -73,7 +74,11 @@ visibility/visible = false
 
 visibility/visible = false
 
-[node name="bottom_bar" parent="ui" instance=ExtResource( 6 )]
+[node name="video" parent="ui" instance=ExtResource( 6 )]
+
+visibility/visible = false
+
+[node name="bottom_bar" parent="ui" instance=ExtResource( 7 )]
 
 anchor/top = 1
 anchor/bottom = 1

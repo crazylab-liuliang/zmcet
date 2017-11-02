@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://templates/video/videoplay.gd" type="Script" id=1]
+[ext_resource path="res://launch/head_bg.png" type="Texture" id=2]
+[ext_resource path="res://font/dynamicfont_simhei_88.tres" type="DynamicFont" id=3]
+[ext_resource path="res://launch/return.png" type="Texture" id=4]
+[ext_resource path="res://arts/correct.wav" type="Sample" id=5]
+[ext_resource path="res://arts/wrong.wav" type="Sample" id=6]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/correct = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/wrong = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+
+[node name="video" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+
+[node name="header_bg" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 375.0
+margin/bottom = 50.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+
+[node name="title" type="Label" parent="header_bg"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 133.0
+margin/top = 9.0
+margin/right = 397.0
+margin/bottom = 110.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.47451, 0.47451, 0.47451, 1 )
+text = "Video"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="return" type="TextureButton" parent="header_bg"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 13.0
+margin/top = 12.0
+margin/right = 35.4
+margin/bottom = 34.4
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+params/resize_mode = 0
+params/scale = Vector2( 0.7, 0.7 )
+params/stretch_mode = 0
+params/modulate = Color( 0.47451, 0.47451, 0.5, 1 )
+
+[node name="sound" type="SamplePlayer2D" parent="."]
+
+transform/pos = Vector2( 22.302, 20.6839 )
+transform/scale = Vector2( 0.303062, 0.353628 )
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 1 )
+config/pitch_random = 0.0
+
+[connection signal="pressed" from="header_bg/return" to="." method="_on_return_pressed"]
+
+
