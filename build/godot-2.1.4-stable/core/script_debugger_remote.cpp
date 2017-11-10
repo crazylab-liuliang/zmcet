@@ -1146,7 +1146,7 @@ ScriptDebuggerRemote::ScriptDebuggerRemote() {
 	tcp_client = StreamPeerTCP::create_ref();
 	packet_peer_stream = Ref<PacketPeerStream>(memnew(PacketPeerStream));
 	packet_peer_stream->set_stream_peer(tcp_client);
-	packet_peer_stream->set_input_buffer_max_size(pow(2, 20));
+	packet_peer_stream->set_input_buffer_max_size(pow(2.f, 20));
 	mutex = Mutex::create();
 	locking = false;
 
