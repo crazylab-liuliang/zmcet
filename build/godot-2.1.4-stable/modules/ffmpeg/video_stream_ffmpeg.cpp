@@ -34,10 +34,58 @@
 
 //#include "thirdparty/misc/yuv2rgb.h"
 
-extern "C" {
-	#include <libavcodec/avcodec.h>
-	#include <libavformat/avformat.h>
-}
+static bool isInited = false;
+
+VideoStreamPlaybackFFMPEG::VideoStreamPlaybackFFMPEG() {
+	if(!isInited){
+		av_register_all();
+
+		isInited = true;
+	}
+
+	m_formatCtx = NULL;
+	m_codec = NULL;
+	m_codecCtx = NULL;
+	m_frame = NULL;
+
+	file = NULL;
+	videobuf_ready = 0;
+	playing = false;
+	frames_pending = 0;
+	videobuf_time = 0;
+	paused = false;
+
+	buffering = false;
+	texture = Ref<ImageTexture>(memnew(ImageTexture));
+	mix_callback = NULL;
+	mix_udata = NULL;
+	audio_track = 0;
+	delay_compensation = 0;
+	audio_frames_wrote = 0;
+
+#ifdef THEORA_USE_THREAD_STREAMING
+	int rb_power = nearest_shift(RB_SIZE_KB * 1024);
+	ring_buffer.resize(rb_power);
+	read_buffer.resize(RB_SIZE_KB * 1024);
+	thread_sem = Semaphore::create();
+	thread = NULL;
+	thread_exit = false;
+	thread_eof = false;
+
+#endif
+};
+
+VideoStreamPlaybackFFMPEG::~VideoStreamPlaybackFFMPEG() {
+
+#ifdef THEORA_USE_THREAD_STREAMING
+
+	memdelete(thread_sem);
+#endif
+	clear();
+
+	if (file)
+		memdelete(file);
+};
 
 int VideoStreamPlaybackFFMPEG::buffer_data() {
 
@@ -133,15 +181,9 @@ void VideoStreamPlaybackFFMPEG::clear() {
 	thread = NULL;
 	ring_buffer.clear();
 #endif
-	//file_name = "";
-
-	theora_p = 0;
-	vorbis_p = 0;
 	videobuf_ready = 0;
 	frames_pending = 0;
 	videobuf_time = 0;
-	theora_eos = false;
-	vorbis_eos = false;
 
 	if (file) {
 		memdelete(file);
@@ -274,48 +316,6 @@ void VideoStreamPlaybackFFMPEG::_streaming_thread(void *ud) {
 
 #endif
 
-VideoStreamPlaybackFFMPEG::VideoStreamPlaybackFFMPEG() {
-
-	file = NULL;
-	theora_p = 0;
-	vorbis_p = 0;
-	videobuf_ready = 0;
-	playing = false;
-	frames_pending = 0;
-	videobuf_time = 0;
-	paused = false;
-
-	buffering = false;
-	texture = Ref<ImageTexture>(memnew(ImageTexture));
-	mix_callback = NULL;
-	mix_udata = NULL;
-	audio_track = 0;
-	delay_compensation = 0;
-	audio_frames_wrote = 0;
-
-#ifdef THEORA_USE_THREAD_STREAMING
-	int rb_power = nearest_shift(RB_SIZE_KB * 1024);
-	ring_buffer.resize(rb_power);
-	read_buffer.resize(RB_SIZE_KB * 1024);
-	thread_sem = Semaphore::create();
-	thread = NULL;
-	thread_exit = false;
-	thread_eof = false;
-
-#endif
-};
-
-VideoStreamPlaybackFFMPEG::~VideoStreamPlaybackFFMPEG() {
-
-#ifdef THEORA_USE_THREAD_STREAMING
-
-	memdelete(thread_sem);
-#endif
-	clear();
-
-	if (file)
-		memdelete(file);
-};
 
 RES ResourceFormatLoaderVideoStreamFFMPEG::load(const String &p_path, const String &p_original_path, Error *r_error) {
 	if (r_error)

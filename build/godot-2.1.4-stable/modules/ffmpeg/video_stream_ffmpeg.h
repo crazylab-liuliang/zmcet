@@ -36,10 +36,13 @@
 #include "ring_buffer.h"
 #include "scene/resources/video_stream.h"
 
+extern "C" {
+	#include <libavcodec/avcodec.h>
+	#include <libavformat/avformat.h>
+}
+
 
 class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
-//	OBJ_TYPE(VideoStreamPlaybackFFMPEG, VideoStreamPlayback);
-
 	OBJ_TYPE(VideoStreamPlaybackFFMPEG, VideoStreamPlayback);
 
 	enum {
@@ -60,14 +63,9 @@ class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
 	void video_write(void);
 	float get_time() const;
 
-	bool theora_eos;
-	bool vorbis_eos;
-
 	double videobuf_time;
 	int pp_inc;
 
-	int theora_p;
-	int vorbis_p;
 	int pp_level_max;
 	int pp_level;
 	int videobuf_ready;
@@ -140,6 +138,13 @@ public:
 
 	VideoStreamPlaybackFFMPEG();
 	~VideoStreamPlaybackFFMPEG();
+
+private:
+	AVFormatContext*	m_formatCtx;
+	AVCodec*			m_codec;
+	AVCodecContext*		m_codecCtx;
+	AVPacket			m_packet;
+	AVFrame*			m_frame;
 };
 
 class VideoStreamFFMPEG : public VideoStream {

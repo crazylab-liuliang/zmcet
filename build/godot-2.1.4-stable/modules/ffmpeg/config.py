@@ -7,4 +7,4 @@ def configure(env):
     if env['platform'] == "osx":
         env.Append(CPPPATH=['/usr/local/include'])
         env.Append(LIBPATH=['/usr/local/lib'])
-        env.Append(LINKFLAGS=['-lavformat', '-lavcodec'])
+        env.Append(LINKFLAGS=['-lavformat', '-lavcodec', '-lavutil', '-lswscale'])
