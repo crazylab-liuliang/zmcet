@@ -58,9 +58,8 @@ class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
 	int audio_frames_wrote;
 	Point2i size;
 
-	int buffer_data();
-	//int queue_page(ogg_page *page);
-	void video_write(void);
+	void decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt);
+	void write_frame_to_texture(void);
 	float get_time() const;
 
 	double videobuf_time;
@@ -141,7 +140,9 @@ public:
 
 private:
 	AVFormatContext*	m_formatCtx;
+	int					m_videoStreamIdx;
 	AVCodec*			m_codec;
+	AVCodecParameters*	m_codecpar;
 	AVCodecContext*		m_codecCtx;
 	AVPacket			m_packet;
 	AVFrame*			m_frame;

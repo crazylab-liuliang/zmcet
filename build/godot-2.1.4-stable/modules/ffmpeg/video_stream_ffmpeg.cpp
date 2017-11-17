@@ -44,6 +44,7 @@ VideoStreamPlaybackFFMPEG::VideoStreamPlaybackFFMPEG() {
 	}
 
 	m_formatCtx = NULL;
+	m_videoStreamIdx = -1;
 	m_codec = NULL;
 	m_codecCtx = NULL;
 	m_frame = NULL;
@@ -87,53 +88,10 @@ VideoStreamPlaybackFFMPEG::~VideoStreamPlaybackFFMPEG() {
 		memdelete(file);
 };
 
-int VideoStreamPlaybackFFMPEG::buffer_data() {
+void VideoStreamPlaybackFFMPEG::write_frame_to_texture(void) {
 
-	char *buffer = NULL;
-
-#ifdef THEORA_USE_THREAD_STREAMING
-
-	int read;
-
-	do {
-		thread_sem->post();
-		read = MIN(ring_buffer.data_left(), 4096);
-		if (read) {
-			ring_buffer.read((uint8_t *)buffer, read);
-			//ogg_sync_wrote(&oy, read);
-		} else {
-			OS::get_singleton()->delay_usec(100);
-		}
-
-	} while (read == 0);
-
-	return read;
-
-#else
-
-	int bytes = file->get_buffer((uint8_t *)buffer, 4096);
-	//ogg_sync_wrote(&oy, bytes);
-	return (bytes);
-
-#endif
-}
-
-/*int VideoStreamPlaybackTheora::queue_page(ogg_page *page) {
-	if (theora_p) {
-		ogg_stream_pagein(&to, page);
-		if (to.e_o_s)
-			theora_eos = true;
-	}
-	if (vorbis_p) {
-		ogg_stream_pagein(&vo, page);
-		if (vo.e_o_s)
-			vorbis_eos = true;
-	}
-	return 0;
-}*/
-
-void VideoStreamPlaybackFFMPEG::video_write(void) {
-
+	fprintf(stderr, "write_frame_to_texture failed\n");
+	return;
 	int pitch = 4;
 	frame_data.resize(size.x * size.y * pitch);
 	{
@@ -172,6 +130,12 @@ void VideoStreamPlaybackFFMPEG::clear() {
 	if (!file)
 		return;
 
+	av_packet_unref(&m_packet);
+	av_frame_free(&m_frame);
+	avcodec_free_context(&m_codecCtx);
+	avcodec_close(m_codecCtx);
+	avformat_close_input(&m_formatCtx);
+
 
 #ifdef THEORA_USE_THREAD_STREAMING
 	thread_exit = true;
@@ -193,7 +157,54 @@ void VideoStreamPlaybackFFMPEG::clear() {
 };
 
 void VideoStreamPlaybackFFMPEG::set_file(const String &p_file) {
+	
+	// open video file
+	if (avformat_open_input(&m_formatCtx, p_file.utf8().get_data(), NULL, NULL) != 0) {
+		fprintf(stderr, "avformat_open_input failed\n");
+		return;
+	}
 
+	// retrieve stream information
+	if (avformat_find_stream_info(m_formatCtx, NULL) < 0) {
+		fprintf(stderr, "avformat_find_stream_info failed\n");
+		return;
+	}
+
+
+	// find the first video stream idx
+	m_videoStreamIdx = -1;
+	for (int i = 0; i < m_formatCtx->nb_streams; i++)
+	{
+		if (m_formatCtx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) 
+		{
+			m_videoStreamIdx = i;
+			break;
+		}
+	}
+
+	if (m_videoStreamIdx == -1) {
+		fprintf(stderr, "can't find video stream in the video file\n");
+		return;
+	}
+
+
+	m_codecpar = m_formatCtx->streams[m_videoStreamIdx]->codecpar;
+
+	m_codec = avcodec_find_decoder(m_codecpar->codec_id);
+	if (m_codec == NULL) {
+		fprintf(stderr, "avcodec_find_decoder failed");
+		return;
+	}
+
+	// create codec context
+	m_codecCtx = avcodec_alloc_context3(m_codec);
+	avcodec_parameters_to_context(m_codecCtx, m_codecpar);
+
+	// open codec
+	if (avcodec_open2(m_codecCtx, m_codec, NULL) < 0) {
+		fprintf(stderr, "avcodec_open2 failed\n");
+		return;
+	}
 };
 
 float VideoStreamPlaybackFFMPEG::get_time() const {
@@ -208,9 +219,47 @@ Ref<Texture> VideoStreamPlaybackFFMPEG::get_texture() {
 	return texture;
 }
 
-void VideoStreamPlaybackFFMPEG::update(float p_delta) {
+void VideoStreamPlaybackFFMPEG::update(float p_delta) 
+{
+	if (!file)
+		return;
 
+	if (!playing || paused) {
+		return;
+	};
+
+	time += p_delta;
+
+	if (av_read_frame(m_formatCtx, &m_packet) >= 0){
+		if (m_packet.stream_index == m_videoStreamIdx) {
+			decode_frame_from_packet(m_codecCtx, m_frame, &m_packet);
+		}
+	}
 };
+
+void VideoStreamPlaybackFFMPEG::decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt)
+{
+	char buf[1024];
+	int ret;
+
+	ret = avcodec_send_packet(dec_ctx, pkt);
+	if (ret < 0) {
+		fprintf(stderr, "Error sending a packet for decoding\n");
+		return;
+	}
+
+	while (ret >= 0) {
+		ret = avcodec_receive_frame(dec_ctx, frame);
+		if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF)
+			return;
+		else if (ret < 0) {
+			fprintf(stderr, "Error during decoding\n");
+			return;
+		}
+
+		write_frame_to_texture();
+	}
+}
 
 void VideoStreamPlaybackFFMPEG::play() {
 
