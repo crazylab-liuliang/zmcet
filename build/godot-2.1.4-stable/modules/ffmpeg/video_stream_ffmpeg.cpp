@@ -49,7 +49,6 @@ VideoStreamPlaybackFFMPEG::VideoStreamPlaybackFFMPEG() {
 	m_codecCtx = NULL;
 	m_frame = NULL;
 
-	file = NULL;
 	videobuf_ready = 0;
 	playing = false;
 	frames_pending = 0;
@@ -83,9 +82,6 @@ VideoStreamPlaybackFFMPEG::~VideoStreamPlaybackFFMPEG() {
 	memdelete(thread_sem);
 #endif
 	clear();
-
-	if (file)
-		memdelete(file);
 };
 
 void VideoStreamPlaybackFFMPEG::write_frame_to_texture(void) {
@@ -126,11 +122,7 @@ void VideoStreamPlaybackFFMPEG::write_frame_to_texture(void) {
 }
 
 void VideoStreamPlaybackFFMPEG::clear() {
-
-	if (!file)
-		return;
-
-	av_packet_unref(&m_packet);
+	//av_packet_unref(&m_packet);
 	av_frame_free(&m_frame);
 	avcodec_free_context(&m_codecCtx);
 	avcodec_close(m_codecCtx);
@@ -149,17 +141,15 @@ void VideoStreamPlaybackFFMPEG::clear() {
 	frames_pending = 0;
 	videobuf_time = 0;
 
-	if (file) {
-		memdelete(file);
-	}
-	file = NULL;
 	playing = false;
 };
 
 void VideoStreamPlaybackFFMPEG::set_file(const String &p_file) {
 	
+	const char* fileName = "E:/test.mp4";
+
 	// open video file
-	if (avformat_open_input(&m_formatCtx, p_file.utf8().get_data(), NULL, NULL) != 0) {
+	if (avformat_open_input(&m_formatCtx, fileName, NULL, NULL) != 0) {
 		fprintf(stderr, "avformat_open_input failed\n");
 		return;
 	}
@@ -170,12 +160,15 @@ void VideoStreamPlaybackFFMPEG::set_file(const String &p_file) {
 		return;
 	}
 
+	// Dump information about file onto standard error
+	//av_dump_format(m_formatCtx, 0, "E:/test.mp4", 0);
 
 	// find the first video stream idx
 	m_videoStreamIdx = -1;
 	for (int i = 0; i < m_formatCtx->nb_streams; i++)
 	{
-		if (m_formatCtx->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) 
+		AVCodecParameters* par = m_formatCtx->streams[i]->codecpar;
+		if ( par && par->codec_type == AVMEDIA_TYPE_VIDEO) 
 		{
 			m_videoStreamIdx = i;
 			break;
@@ -221,14 +214,15 @@ Ref<Texture> VideoStreamPlaybackFFMPEG::get_texture() {
 
 void VideoStreamPlaybackFFMPEG::update(float p_delta) 
 {
-	if (!file)
-		return;
+	fprintf(stderr, "video stream play back ffmepg update---------------A\n");
 
 	if (!playing || paused) {
 		return;
 	};
 
 	time += p_delta;
+
+	fprintf(stderr, "video stream play back ffmepg update---------------B\n");
 
 	if (av_read_frame(m_formatCtx, &m_packet) >= 0){
 		if (m_packet.stream_index == m_videoStreamIdx) {

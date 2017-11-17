@@ -53,7 +53,6 @@ class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
 	Image::Format format;
 	DVector<uint8_t> frame_data;
 	int frames_pending;
-	FileAccess *file;
 	String file_name;
 	int audio_frames_wrote;
 	Point2i size;
