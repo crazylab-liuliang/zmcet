@@ -826,7 +826,7 @@ do {                            \
     *(DSTPTR)++ = 255;            \
 } while (0 == 1)
 
-void yuv422_2_rgb8888(uint8_t  *dst_ptr,
+static void yuv422_2_rgb8888(uint8_t  *dst_ptr,
 		const uint8_t  *y_ptr,
 		const uint8_t  *u_ptr,
 		const uint8_t  *v_ptr,
@@ -937,7 +937,7 @@ do {                        \
     (DSTPTR) = 0xFF000000 | (Y & 0xFF) | (0xFF00 & (Y>>14)) | (0xFF0000 & (Y<<5));\
 } while (0 == 1)
 
-void yuv420_2_rgb8888(uint8_t  *dst_ptr_,
+static void yuv420_2_rgb8888(uint8_t  *dst_ptr_,
 		const uint8_t  *y_ptr,
 		const uint8_t  *u_ptr,
 		const uint8_t  *v_ptr,
@@ -1059,7 +1059,7 @@ do {                            \
 	*(DSTPTR)++ = 255;           \
 } while (0 == 1)
 
-void yuv444_2_rgb8888(uint8_t  *dst_ptr,
+static void yuv444_2_rgb8888(uint8_t  *dst_ptr,
 		const uint8_t  *y_ptr,
 		const uint8_t  *u_ptr,
 		const uint8_t  *v_ptr,

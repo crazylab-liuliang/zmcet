@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://launch/launch.gd" type="Script" id=1]
 [ext_resource path="res://launch/head_bar/head_bar.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://templates/choice/choice.tscn" type="PackedScene" id=5]
 [ext_resource path="res://templates/video/video.tscn" type="PackedScene" id=6]
 [ext_resource path="res://launch/bottom_bar.tscn" type="PackedScene" id=7]
+[ext_resource path="res://templates/video/test.webm" type="VideoStream" id=8]
 
 [node name="launch" type="Node"]
 
@@ -84,5 +85,22 @@ anchor/top = 1
 anchor/bottom = 1
 margin/top = 53.0
 margin/bottom = -67.0
+
+[node name="VideoPlayer" type="VideoPlayer" parent="ui"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 170.0
+margin/right = 377.0
+margin/bottom = 411.0
+stream/audio_track = 0
+stream/stream = ExtResource( 8 )
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+expand = true
 
 
