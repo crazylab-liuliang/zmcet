@@ -67,29 +67,11 @@ class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
 	bool buffering;
 
 	double last_update_time;
-	double time;
 	double delay_compensation;
 
 	AudioMixCallback mix_callback;
 	void *mix_udata;
 	bool paused;
-
-#ifdef THEORA_USE_THREAD_STREAMING
-
-	enum {
-		RB_SIZE_KB = 1024
-	};
-
-	RingBuffer<uint8_t> ring_buffer;
-	Vector<uint8_t> read_buffer;
-	bool thread_eof;
-	Semaphore *thread_sem;
-	Thread *thread;
-	volatile bool thread_exit;
-
-	static void _streaming_thread(void *ud);
-
-#endif
 
 	int audio_track;
 
@@ -147,6 +129,9 @@ private:
 	int					m_videoHeight;				//  ”∆µ∏ﬂ
 	Image::Format		m_videoTextureFormat;
 	Ref<ImageTexture>	m_videoTexture;
+
+	double				m_time;
+	double				m_videoFrameTime;
 };
 
 class VideoStreamFFMPEG : public VideoStream {

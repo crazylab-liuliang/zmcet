@@ -48,6 +48,7 @@ VideoStreamPlaybackFFMPEG::VideoStreamPlaybackFFMPEG() {
 	m_videoCodec = NULL;
 	m_videoCodecCtx = NULL;
 	m_videoFrame = NULL;
+	m_videoFrameTime = 0.0;
 
 	videobuf_ready = 0;
 	playing = false;
@@ -203,6 +204,7 @@ void VideoStreamPlaybackFFMPEG::set_file(const String &p_file) {
 	m_videoTexture->create(m_videoWidth, m_videoHeight, Image::FORMAT_RGBA, Texture::FLAG_FILTER | Texture::FLAG_VIDEO_SURFACE);
 
 	m_videoFrame = av_frame_alloc();
+	m_videoFrameTime = 0.0;
 
 	playing = false;
 };
@@ -211,7 +213,7 @@ float VideoStreamPlaybackFFMPEG::get_time() const {
 
 	//print_line("total: "+itos(get_total())+" todo: "+itos(get_todo()));
 	//return MAX(0,time-((get_total())/(float)vi.rate));
-	return time - AudioServer::get_singleton()->get_output_delay() - delay_compensation; //-((get_total())/(float)vi.rate);
+	return m_time - AudioServer::get_singleton()->get_output_delay() - delay_compensation; //-((get_total())/(float)vi.rate);
 };
 
 Ref<Texture> VideoStreamPlaybackFFMPEG::get_texture() {
@@ -221,15 +223,24 @@ Ref<Texture> VideoStreamPlaybackFFMPEG::get_texture() {
 
 void VideoStreamPlaybackFFMPEG::update(float p_delta) 
 {
+	//fprintf(stderr, p_delta);
+
 	if (!playing || paused) {
 		return;
 	};
 
-	time += p_delta;
-
-	if (av_read_frame(m_formatCtx, &m_packet) >= 0){
-		if (m_packet.stream_index == m_videoStreamIdx) {
-			decode_frame_from_packet(m_videoCodecCtx, m_videoFrame, &m_packet);
+	m_time += p_delta;
+	if (m_time > m_videoFrameTime)
+	{
+		bool decoderSucceed = false;
+		while (!decoderSucceed)
+		{
+			if (av_read_frame(m_formatCtx, &m_packet) >= 0) {
+				if (m_packet.stream_index == m_videoStreamIdx) {
+					decode_frame_from_packet(m_videoCodecCtx, m_videoFrame, &m_packet);
+					decoderSucceed = true;
+				}
+			}
 		}
 	}
 };
@@ -252,13 +263,24 @@ void VideoStreamPlaybackFFMPEG::decode_frame_from_packet(AVCodecContext *dec_ctx
 		}
 
 		write_frame_to_texture();
+
+		m_videoFrameTime = 0.0;
+		if(pkt->dts != AV_NOPTS_VALUE){
+			m_videoFrameTime = av_frame_get_best_effort_timestamp(frame);
+		}
+		else {
+			m_videoFrameTime = 0.0;
+		}
+
+		AVRational frameRate = dec_ctx->time_base;//av_inv_q(dec_ctx->framerate);
+		m_videoFrameTime = m_videoFrameTime * av_q2d(frameRate) * 0.001f;
 	}
 }
 
 void VideoStreamPlaybackFFMPEG::play() {
 
 	if (!playing)
-		time = 0;
+		m_time = 0;
 	else {
 		stop();
 	}
@@ -276,7 +298,8 @@ void VideoStreamPlaybackFFMPEG::stop() {
 		set_file(m_fileName); //reset
 	}
 	playing = false;
-	time = 0;
+	m_time = 0;
+	m_videoFrameTime = 0.0;
 };
 
 bool VideoStreamPlaybackFFMPEG::is_playing() const {
