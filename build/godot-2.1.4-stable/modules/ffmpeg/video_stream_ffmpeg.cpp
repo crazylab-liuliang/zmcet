@@ -32,7 +32,7 @@
 #include "globals.h"
 #include "os/os.h"
 
-//#include "thirdparty/misc/yuv2rgb.h"
+#include "thirdparty/misc/yuv2rgb.h"
 
 static bool isInited = false;
 
@@ -89,7 +89,7 @@ void VideoStreamPlaybackFFMPEG::write_frame_to_texture(void) {
 	fprintf(stderr, "write_frame_to_texture failed\n");
 	return;
 	int pitch = 4;
-	frame_data.resize(size.x * size.y * pitch);
+	frame_data.resize(m_videoWidth * m_videoHeight * pitch);
 	{
 		DVector<uint8_t>::Write w = frame_data.write();
 		char *dst = (char *)w.ptr();
@@ -100,21 +100,21 @@ void VideoStreamPlaybackFFMPEG::write_frame_to_texture(void) {
 
 		if (px_fmt == AV_PIX_FMT_YUV444P) {
 
-			//yuv444_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[1].data, (uint8_t *)yuv[2].data, size.x, size.y, yuv[0].stride, yuv[1].stride, size.x << 2, 0);
+			//yuv444_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[1].data, (uint8_t *)yuv[2].data, m_videoWidth, m_videoHeight, yuv[0].stride, yuv[1].stride,m_videoWidth << 2, 0);
 
 		} else if (px_fmt == AV_PIX_FMT_YUV422P) {
 
-			//yuv422_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[1].data, (uint8_t *)yuv[2].data, size.x, size.y, yuv[0].stride, yuv[1].stride, size.x << 2, 0);
+			//yuv422_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[1].data, (uint8_t *)yuv[2].data, m_videoWidth, m_videoHeight, yuv[0].stride, yuv[1].stride, m_videoWidth << 2, 0);
 
 		} else if (px_fmt == AV_PIX_FMT_YUV420P) {
 
-			//yuv420_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[2].data, (uint8_t *)yuv[1].data, size.x, size.y, yuv[0].stride, yuv[1].stride, size.x << 2, 0);
+			//yuv420_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[2].data, (uint8_t *)yuv[1].data, m_videoWidth, m_videoHeight, yuv[0].stride, yuv[1].stride, m_videoWidth << 2, 0);
 		};
 
 		format = Image::FORMAT_RGBA;
 	}
 
-	Image img(size.x, size.y, 0, Image::FORMAT_RGBA, frame_data); //zero copy image creation
+	Image img(m_videoWidth, m_videoHeight, 0, Image::FORMAT_RGBA, frame_data); //zero copy image creation
 
 	texture->set_data(img); //zero copy send to visual server
 
@@ -146,6 +146,8 @@ void VideoStreamPlaybackFFMPEG::clear() {
 
 void VideoStreamPlaybackFFMPEG::set_file(const String &p_file) {
 	
+	m_fileName = p_file;
+
 	const char* fileName = "E:/test.mp4";
 
 	// open video file
@@ -198,6 +200,14 @@ void VideoStreamPlaybackFFMPEG::set_file(const String &p_file) {
 		fprintf(stderr, "avcodec_open2 failed\n");
 		return;
 	}
+
+
+	m_videoWidth = m_codecpar->width;
+	m_videoHeight = m_codecpar->height;
+
+	texture->create(m_videoWidth, m_videoHeight, Image::FORMAT_RGBA, Texture::FLAG_FILTER | Texture::FLAG_VIDEO_SURFACE);
+
+	playing = false;
 };
 
 float VideoStreamPlaybackFFMPEG::get_time() const {
@@ -229,6 +239,8 @@ void VideoStreamPlaybackFFMPEG::update(float p_delta)
 			decode_frame_from_packet(m_codecCtx, m_frame, &m_packet);
 		}
 	}
+
+	fprintf(stderr, "video stream play back ffmepg update---------------C\n");
 };
 
 void VideoStreamPlaybackFFMPEG::decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt)
@@ -273,7 +285,7 @@ void VideoStreamPlaybackFFMPEG::stop() {
 	if (playing) {
 
 		clear();
-		set_file(file_name); //reset
+		set_file(m_fileName); //reset
 	}
 	playing = false;
 	time = 0;

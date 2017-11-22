@@ -53,9 +53,7 @@ class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
 	Image::Format format;
 	DVector<uint8_t> frame_data;
 	int frames_pending;
-	String file_name;
 	int audio_frames_wrote;
-	Point2i size;
 
 	void decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt);
 	void write_frame_to_texture(void);
@@ -138,6 +136,7 @@ public:
 	~VideoStreamPlaybackFFMPEG();
 
 private:
+	String				m_fileName;					// 文件名称
 	AVFormatContext*	m_formatCtx;
 	int					m_videoStreamIdx;
 	AVCodec*			m_codec;
@@ -145,6 +144,9 @@ private:
 	AVCodecContext*		m_codecCtx;
 	AVPacket			m_packet;
 	AVFrame*			m_frame;
+
+	int					m_videoWidth;				// 视频宽
+	int					m_videoHeight;				// 视频高
 };
 
 class VideoStreamFFMPEG : public VideoStream {
