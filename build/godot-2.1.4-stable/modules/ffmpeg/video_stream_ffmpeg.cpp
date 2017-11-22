@@ -45,9 +45,9 @@ VideoStreamPlaybackFFMPEG::VideoStreamPlaybackFFMPEG() {
 
 	m_formatCtx = NULL;
 	m_videoStreamIdx = -1;
-	m_codec = NULL;
-	m_codecCtx = NULL;
-	m_frame = NULL;
+	m_videoCodec = NULL;
+	m_videoCodecCtx = NULL;
+	m_videoFrame = NULL;
 
 	videobuf_ready = 0;
 	playing = false;
@@ -56,7 +56,7 @@ VideoStreamPlaybackFFMPEG::VideoStreamPlaybackFFMPEG() {
 	paused = false;
 
 	buffering = false;
-	texture = Ref<ImageTexture>(memnew(ImageTexture));
+	m_videoTexture = Ref<ImageTexture>(memnew(ImageTexture));
 	mix_callback = NULL;
 	mix_udata = NULL;
 	audio_track = 0;
@@ -86,46 +86,42 @@ VideoStreamPlaybackFFMPEG::~VideoStreamPlaybackFFMPEG() {
 
 void VideoStreamPlaybackFFMPEG::write_frame_to_texture(void) {
 
-	fprintf(stderr, "write_frame_to_texture failed\n");
-	return;
 	int pitch = 4;
 	frame_data.resize(m_videoWidth * m_videoHeight * pitch);
 	{
 		DVector<uint8_t>::Write w = frame_data.write();
 		char *dst = (char *)w.ptr();
 
-		//uv_offset=(ti.pic_x/2)+(yuv[1].stride)*(ti.pic_y/2);
-
-		AVPixelFormat px_fmt = AV_PIX_FMT_YUV420P;
+		AVPixelFormat px_fmt = AVPixelFormat(m_videoFrame->format);
 
 		if (px_fmt == AV_PIX_FMT_YUV444P) {
 
-			//yuv444_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[1].data, (uint8_t *)yuv[2].data, m_videoWidth, m_videoHeight, yuv[0].stride, yuv[1].stride,m_videoWidth << 2, 0);
+			yuv444_2_rgb8888((uint8_t *)dst, (uint8_t *)m_videoFrame->data[0], (uint8_t *)m_videoFrame->data[1], (uint8_t *)m_videoFrame->data[2], m_videoWidth, m_videoHeight, m_videoFrame->linesize[0], m_videoFrame->linesize[1], m_videoWidth << 2, 0);
 
 		} else if (px_fmt == AV_PIX_FMT_YUV422P) {
 
-			//yuv422_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[1].data, (uint8_t *)yuv[2].data, m_videoWidth, m_videoHeight, yuv[0].stride, yuv[1].stride, m_videoWidth << 2, 0);
+			yuv422_2_rgb8888((uint8_t *)dst, (uint8_t *)m_videoFrame->data[0], (uint8_t *)m_videoFrame->data[1], (uint8_t *)m_videoFrame->data[2], m_videoWidth, m_videoHeight, m_videoFrame->linesize[0], m_videoFrame->linesize[1], m_videoWidth << 2, 0);
 
 		} else if (px_fmt == AV_PIX_FMT_YUV420P) {
 
-			//yuv420_2_rgb8888((uint8_t *)dst, (uint8_t *)yuv[0].data, (uint8_t *)yuv[2].data, (uint8_t *)yuv[1].data, m_videoWidth, m_videoHeight, yuv[0].stride, yuv[1].stride, m_videoWidth << 2, 0);
+			yuv420_2_rgb8888((uint8_t *)dst, (uint8_t *)m_videoFrame->data[0], (uint8_t *)m_videoFrame->data[2], (uint8_t *)m_videoFrame->data[1], m_videoWidth, m_videoHeight, m_videoFrame->linesize[0], m_videoFrame->linesize[1], m_videoWidth << 2, 0);
 		};
 
-		format = Image::FORMAT_RGBA;
+		m_videoTextureFormat = Image::FORMAT_RGBA;
 	}
 
-	Image img(m_videoWidth, m_videoHeight, 0, Image::FORMAT_RGBA, frame_data); //zero copy image creation
+	Image img(m_videoWidth, m_videoHeight, 0, m_videoTextureFormat, frame_data); //zero copy image creation
 
-	texture->set_data(img); //zero copy send to visual server
+	m_videoTexture->set_data(img); //zero copy send to visual server
 
 	frames_pending = 1;
 }
 
 void VideoStreamPlaybackFFMPEG::clear() {
 	//av_packet_unref(&m_packet);
-	av_frame_free(&m_frame);
-	avcodec_free_context(&m_codecCtx);
-	avcodec_close(m_codecCtx);
+	av_frame_free(&m_videoFrame);
+	avcodec_free_context(&m_videoCodecCtx);
+	avcodec_close(m_videoCodecCtx);
 	avformat_close_input(&m_formatCtx);
 
 
@@ -183,29 +179,30 @@ void VideoStreamPlaybackFFMPEG::set_file(const String &p_file) {
 	}
 
 
-	m_codecpar = m_formatCtx->streams[m_videoStreamIdx]->codecpar;
+	m_videoCodecpar = m_formatCtx->streams[m_videoStreamIdx]->codecpar;
 
-	m_codec = avcodec_find_decoder(m_codecpar->codec_id);
-	if (m_codec == NULL) {
+	m_videoCodec = avcodec_find_decoder(m_videoCodecpar->codec_id);
+	if (m_videoCodec == NULL) {
 		fprintf(stderr, "avcodec_find_decoder failed");
 		return;
 	}
 
 	// create codec context
-	m_codecCtx = avcodec_alloc_context3(m_codec);
-	avcodec_parameters_to_context(m_codecCtx, m_codecpar);
+	m_videoCodecCtx = avcodec_alloc_context3(m_videoCodec);
+	avcodec_parameters_to_context(m_videoCodecCtx, m_videoCodecpar);
 
 	// open codec
-	if (avcodec_open2(m_codecCtx, m_codec, NULL) < 0) {
+	if (avcodec_open2(m_videoCodecCtx, m_videoCodec, NULL) < 0) {
 		fprintf(stderr, "avcodec_open2 failed\n");
 		return;
 	}
 
 
-	m_videoWidth = m_codecpar->width;
-	m_videoHeight = m_codecpar->height;
+	m_videoWidth = m_videoCodecpar->width;
+	m_videoHeight = m_videoCodecpar->height;
+	m_videoTexture->create(m_videoWidth, m_videoHeight, Image::FORMAT_RGBA, Texture::FLAG_FILTER | Texture::FLAG_VIDEO_SURFACE);
 
-	texture->create(m_videoWidth, m_videoHeight, Image::FORMAT_RGBA, Texture::FLAG_FILTER | Texture::FLAG_VIDEO_SURFACE);
+	m_videoFrame = av_frame_alloc();
 
 	playing = false;
 };
@@ -219,36 +216,27 @@ float VideoStreamPlaybackFFMPEG::get_time() const {
 
 Ref<Texture> VideoStreamPlaybackFFMPEG::get_texture() {
 
-	return texture;
+	return m_videoTexture;
 }
 
 void VideoStreamPlaybackFFMPEG::update(float p_delta) 
 {
-	fprintf(stderr, "video stream play back ffmepg update---------------A\n");
-
 	if (!playing || paused) {
 		return;
 	};
 
 	time += p_delta;
 
-	fprintf(stderr, "video stream play back ffmepg update---------------B\n");
-
 	if (av_read_frame(m_formatCtx, &m_packet) >= 0){
 		if (m_packet.stream_index == m_videoStreamIdx) {
-			decode_frame_from_packet(m_codecCtx, m_frame, &m_packet);
+			decode_frame_from_packet(m_videoCodecCtx, m_videoFrame, &m_packet);
 		}
 	}
-
-	fprintf(stderr, "video stream play back ffmepg update---------------C\n");
 };
 
-void VideoStreamPlaybackFFMPEG::decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt)
-{
-	char buf[1024];
-	int ret;
-
-	ret = avcodec_send_packet(dec_ctx, pkt);
+void VideoStreamPlaybackFFMPEG::decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt){
+	
+	int ret = avcodec_send_packet(dec_ctx, pkt);
 	if (ret < 0) {
 		fprintf(stderr, "Error sending a packet for decoding\n");
 		return;

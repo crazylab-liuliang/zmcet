@@ -50,13 +50,10 @@ class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
 	};
 
 	//Image frames[MAX_FRAMES];
-	Image::Format format;
 	DVector<uint8_t> frame_data;
 	int frames_pending;
 	int audio_frames_wrote;
 
-	void decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt);
-	void write_frame_to_texture(void);
 	float get_time() const;
 
 	double videobuf_time;
@@ -72,8 +69,6 @@ class VideoStreamPlaybackFFMPEG : public VideoStreamPlayback {
 	double last_update_time;
 	double time;
 	double delay_compensation;
-
-	Ref<ImageTexture> texture;
 
 	AudioMixCallback mix_callback;
 	void *mix_udata;
@@ -136,17 +131,22 @@ public:
 	~VideoStreamPlaybackFFMPEG();
 
 private:
+	void decode_frame_from_packet(AVCodecContext *dec_ctx, AVFrame *frame, AVPacket *pkt);
+	void write_frame_to_texture(void);
+
+private:
 	String				m_fileName;					// 文件名称
 	AVFormatContext*	m_formatCtx;
 	int					m_videoStreamIdx;
-	AVCodec*			m_codec;
-	AVCodecParameters*	m_codecpar;
-	AVCodecContext*		m_codecCtx;
+	AVCodec*			m_videoCodec;
+	AVCodecParameters*	m_videoCodecpar;
+	AVCodecContext*		m_videoCodecCtx;
 	AVPacket			m_packet;
-	AVFrame*			m_frame;
-
+	AVFrame*			m_videoFrame;
 	int					m_videoWidth;				// 视频宽
 	int					m_videoHeight;				// 视频高
+	Image::Format		m_videoTextureFormat;
+	Ref<ImageTexture>	m_videoTexture;
 };
 
 class VideoStreamFFMPEG : public VideoStream {
