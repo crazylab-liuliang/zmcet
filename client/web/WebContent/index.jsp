@@ -14,6 +14,6 @@
 <title>智盟</title>
 </head>
 <body>
-<jsp:forward page="course.jsp?id=1&user=2" />
+<jsp:forward page="student/course.jsp?id=1&user=2" />
 </body>
 </html>
