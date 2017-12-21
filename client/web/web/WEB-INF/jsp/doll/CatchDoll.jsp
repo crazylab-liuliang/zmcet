@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>娃娃达人</title>
+    <link rel="shortcut icon" href="/RES/img/logo.ico" type="image/x-icon" />
+
     <style type="text/css">
         html, body {
             background-color: #111;
@@ -63,6 +65,7 @@
         var player = new JSMpeg.Player(url, {canvas: canvas});
     </script>
 
+    <br />
     <button type="button" onclick="onPressStart()">start</button>
     <button type="button" onclick="onPressForward()">forward</button>
     <button type="button" onclick="onPressBack()">back</button>

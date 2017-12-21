@@ -9,9 +9,11 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="shortcut icon" href="/RES/img/logo.ico" type="image/x-icon" />
 </head>
 <body>
     <a href="/zm/course">ZM Edu</a>
+    <br />
     <a href="/doll/catch">Doll</a>
 </body>
 </html>

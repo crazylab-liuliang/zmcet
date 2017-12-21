@@ -14,8 +14,8 @@ public class ZMController {
 
     @RequestMapping(value="/course", method = RequestMethod.GET)
     public String catchDoll(ModelMap model){
-        model.addAttribute("msg", "Spring MVC hellow" );
-        model.addAttribute("name", "wocao");
+        model.addAttribute("message", "Hello Sprive MVC, I'm model");
+
         return "zm/course";
     }
 }

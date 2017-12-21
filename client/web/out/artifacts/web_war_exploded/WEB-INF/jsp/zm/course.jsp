@@ -9,8 +9,9 @@
 <html>
 <head>
     <title>Course</title>
+    <link rel="shortcut icon" href="/RES/img/logo.ico" type="image/x-icon" />
 </head>
 <body>
-    Wo le g e cao
+    <h2>${message}</h2>
 </body>
 </html>
