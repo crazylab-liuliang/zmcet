@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-@RequestMapping(value="/", method = RequestMethod.GET)
+@RequestMapping(value="/doll", method = RequestMethod.GET)
 public class CatchDollController {
 
     @RequestMapping(value="/catch", method = RequestMethod.GET)
     public String catchDoll(ModelMap model){
         model.addAttribute("msg", "Spring MVC hellow" );
         model.addAttribute("name", "wocao");
-        return "CatchDoll";
+        return "doll/CatchDoll";
     }
 
     @RequestMapping(value="/op", method = RequestMethod.GET)
