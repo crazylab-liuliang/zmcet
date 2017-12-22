@@ -13,9 +13,7 @@ import org.springframework.web.client.RestTemplate;
 public class MainController {
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String catchDoll(ModelMap model){
-        model.addAttribute("msg", "Spring MVC hellow" );
-        model.addAttribute("name", "wocao");
+    public String index(ModelMap model){
         return "index";
     }
 }

@@ -12,6 +12,6 @@
     <link rel="shortcut icon" href="/RES/img/logo.ico" type="image/x-icon" />
 </head>
 <body>
-    <h2>${message}</h2>
+    <h2>${units}</h2>
 </body>
 </html>

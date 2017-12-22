@@ -7,7 +7,7 @@
 
     <context:component-scan base-package="main.controller" />
     <context:component-scan base-package="doll.controller" />
-    <context:component-scan base-package="zm.controller" />
+    <context:component-scan base-package="zm" />
 
     <mvc:default-servlet-handler />
     <mvc:annotation-driven />
