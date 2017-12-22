@@ -12,6 +12,6 @@
     <link rel="shortcut icon" href="/RES/img/logo.ico" type="image/x-icon" />
 </head>
 <body>
-    <h2>${units}</h2>
+    <h2>${course.name}</h2>
 </body>
 </html>

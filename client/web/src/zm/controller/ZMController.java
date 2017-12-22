@@ -5,11 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
-import zm.beans.course.Course;
-import zm.beans.course.Courses;
+import zm.service.course.Course;
+import zm.service.course.Courses;
 
 @Controller
 @RequestMapping(value="/zm", method = RequestMethod.GET)
@@ -26,7 +23,7 @@ public class ZMController {
     public String catchDoll(ModelMap model){
         Course course = new Course();// courses.getCourse("cet4");
 
-        model.addAttribute("units", courses.test());
+        model.addAttribute("course", courses.getCourse("cet4"));
 
         return "zm/course";
     }

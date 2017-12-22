@@ -1,4 +1,4 @@
-package zm.beans.course;
+package zm.service.course;
 
 public class ExerciseMarkDown {
 }
