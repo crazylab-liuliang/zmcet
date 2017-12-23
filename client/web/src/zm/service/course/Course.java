@@ -13,6 +13,4 @@ public class Course {
         this.name = name;
     }
 
-    // 获取单元列表
-
 }
