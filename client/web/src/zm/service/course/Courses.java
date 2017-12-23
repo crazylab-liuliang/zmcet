@@ -13,6 +13,11 @@ public class Courses {
     public Courses(){
     }
 
+
+    public String getSummary(){
+        return oss.getObjectSummaries();
+    }
+
     public Course getCourse(String name){
         String content = this.oss.getCourseContent(name);
         Course course  = new Course();

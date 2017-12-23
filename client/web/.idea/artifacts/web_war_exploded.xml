@@ -11,6 +11,11 @@
           <element id="library" level="project" name="Spring-4.3.13.RELEASE" />
           <element id="library" level="project" name="Spring MVC-4.3.13.RELEASE" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/jstl-1.2.jar" />
+          <element id="library" level="project" name="aliyun-sdk-oss-2.8.2-javadoc" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/httpclient-4.4.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/httpcore-4.4.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/jdom-1.1.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/commons-codec-1.9.jar" />
         </element>
       </element>
     </root>
