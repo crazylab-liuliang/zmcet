@@ -10,5 +10,5 @@ class UnitDesc{
 public class CourseMeta {
     private String  name;
     private String  icon;
-    private List<UnitDesc> = new List<UnitDesc>();
+    //private List<UnitDesc> = new List<UnitDesc>();
 }

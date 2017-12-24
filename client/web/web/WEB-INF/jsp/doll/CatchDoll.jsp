@@ -21,44 +21,44 @@
     <script>
         function onPressStart(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "/op?type=0&value=0", true);
+            xmlhttp.open("GET", "http://118.190.156.61:8900/op?machine=apple&type=0&value=0", true);
             xmlhttp.send()
         }
 
         function onPressForward(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "/op?type=1&value=1", true);
+            xmlhttp.open("GET", "http://118.190.156.61:8900/op?machine=apple&type=1&value=1", true);
             xmlhttp.send()
         }
 
         function onPressBack(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "/op?type=2&value=1", true);
+            xmlhttp.open("GET", "http://118.190.156.61:8900/op?machine=apple&type=2&value=1", true);
             xmlhttp.send()
         }
 
         function onPressLeft(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "/op?type=3&value=1", true);
+            xmlhttp.open("GET", "/op?machine=apple&type=3&value=1", true);
             xmlhttp.send()
         }
 
         function onPressRight(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "/op?type=4&value=1", true);
+            xmlhttp.open("GET", "http://118.190.156.61:8900/op?machine=apple&type=4&value=1", true);
             xmlhttp.send()
         }
 
         function onPressTake(){
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "/op?type=5&value=0", true);
+            xmlhttp.open("GET", "http://118.190.156.61:8900/op?machine=apple&type=5&value=0", true);
             xmlhttp.send()
         }
     </script>
 </head>
 <body>
     <canvas id="video-canvas"></canvas>
-    <script type="text/javascript" src="RES/js/jsmpeg.min.js"></script>
+    <script type="text/javascript" src="/RES/js/jsmpeg.min.js"></script>
     <script type="text/javascript">
         var canvas = document.getElementById('video-canvas');
         var url = 'ws://118.190.156.61:10002/camera_0';
