@@ -28,6 +28,11 @@ public class ZMController {
         return "zm/courses";
     }
 
+    @RequestMapping(value="/courses/new", method=RequestMethod.GET)
+    public String newCourse(ModelMap model){
+        return "zm/course_new";
+    }
+
     /***
      * 具体课程页面
      * @param model

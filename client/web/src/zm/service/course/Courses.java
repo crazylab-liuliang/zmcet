@@ -12,8 +12,8 @@ public class Courses {
     private String endPoint = "oss-cn-shenzhen.aliyuncs.com"; //"oss-cn-shenzhen-internal.aliyuncs.com";
     private String bucketName = "alab-web";
     private String coursesLocation = "zm/courses/";
-    private String accessKeyId = "LTAIU61mKyyd1kQj";
-    private String accessKeySecret = "XmZnUm0dCOUYZSqVDVrWUg6mpMzL9l";
+    private String accessKeyId = "LTAIn09uY98LyNVH";
+    private String accessKeySecret = "U0FSBe9oFiaha98iRTVEPdZywQaFuC";
 
 
     public Courses(){
@@ -28,6 +28,10 @@ public class Courses {
     }
 
     /***
+     * 获取课程列表
+     */
+
+    /***
      * 获取单元描述信息
      * @param courseName
      * @return
@@ -35,13 +39,18 @@ public class Courses {
     public CourseMeta getCourseMeta(String courseName){
         // 获取课程配置文件
         OSSClient oss = new OSSClient( endPoint, accessKeyId, accessKeySecret);
-        OSSObject ossObj = oss.getObject( bucketName, coursesLocation + courseName + "/course.json");
-        ossObj.getObjectContent();
 
-        Gson gson = new Gson();
-        CourseMeta courseMeta = new CourseMeta();
-        courseMeta = gson.fromJson("", CourseMeta.class);
+        String courseMetaFile = coursesLocation + courseName + "/course.json";
+        boolean isFileExist = oss.doesObjectExist( bucketName, courseMetaFile, true);
+        if(isFileExist){
+            OSSObject ossObj = oss.getObject( bucketName, courseMetaFile);
+            ossObj.getObjectContent();
 
-        return courseMeta;
+            CourseMeta courseMeta = new CourseMeta();
+
+            return  courseMeta;
+        }
+
+        return null;
     }
 }

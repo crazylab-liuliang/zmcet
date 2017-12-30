@@ -11,6 +11,12 @@
     <title>Courses</title>
 </head>
 <body>
-    ${coursesSummary}
+    <div class="container" >
+        <div class="row">
+            <div class="col">
+                <a href="/zm/courses/new"><img src="/RES/img/add_course.png" /></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
