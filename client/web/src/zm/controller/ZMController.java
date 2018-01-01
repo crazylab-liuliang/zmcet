@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import zm.service.course.CourseMeta;
 import zm.service.course.Courses;
 
 @Controller
@@ -44,7 +45,8 @@ public class ZMController {
                             @RequestParam("edit") boolean edit){
 
 
-        model.addAttribute("courseMeta", courses.getCourseMeta(courseName));
+        CourseMeta meta = courses.getCourseMeta(courseName);
+        model.addAttribute("courseMeta", meta);
 
         return "zm/course";
     }

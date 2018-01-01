@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Ares
@@ -17,11 +18,26 @@
 </head>
 <body>
     <div class="container" >
-        <div class="row">
+        <!--div class="row">
             <div class="col">
-                <h2>${courseMeta}</h2>
+                <h2>${courseMeta.name}</h2>
+                <img src="${courseMeta.icon}" />
             </div>
+        </div-->
+
+        <div class="row">
+            <c:forEach var="unitMeta" items="${courseMeta.unitMetas}" varStatus="status">
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail" align="center">
+                        <img src="${unitMeta.icon}">
+                        <div class="caption" align="center">
+                            <h3>${unitMeta.name}</h3>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
+
     </div>
 </body>
 </html>

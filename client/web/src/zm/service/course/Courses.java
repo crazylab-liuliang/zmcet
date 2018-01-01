@@ -2,6 +2,8 @@ package zm.service.course;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.OSSObject;
+import com.aliyun.oss.model.OSSObjectSummary;
+import com.aliyun.oss.model.ObjectListing;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 
@@ -40,17 +42,29 @@ public class Courses {
         // 获取课程配置文件
         OSSClient oss = new OSSClient( endPoint, accessKeyId, accessKeySecret);
 
-        String courseMetaFile = coursesLocation + courseName + "/course.json";
-        boolean isFileExist = oss.doesObjectExist( bucketName, courseMetaFile, true);
-        if(isFileExist){
-            OSSObject ossObj = oss.getObject( bucketName, courseMetaFile);
-            ossObj.getObjectContent();
+        String rootURL = "http://" + bucketName + "." + endPoint + "/";
+        String courseLocation = coursesLocation + courseName + "/";
+        List<OSSObjectSummary> objSummarys = oss.listObjects( bucketName, courseLocation).getObjectSummaries();
 
-            CourseMeta courseMeta = new CourseMeta();
+        CourseMeta courseMeta = new CourseMeta();
+        courseMeta.setURL(rootURL);
+        courseMeta.setName(courseName);
+        courseMeta.setIcon( rootURL + coursesLocation + courseName + "/icon.png");
 
-            return  courseMeta;
+        for(OSSObjectSummary summary : objSummarys){
+            String key = summary.getKey();
+            if( key.endsWith("/") && key.length() > courseLocation.length()){
+                String substr = summary.getKey().substring( courseLocation.length());
+                String unitName = substr.substring( 0, substr.length()-1);
+
+                UnitMeta unitMeta = new UnitMeta();
+                unitMeta.setName(unitName);
+                unitMeta.setIcon(rootURL + summary.getKey() + "icon.png");
+
+                courseMeta.addUnitMeta(unitMeta);
+            }
         }
 
-        return null;
+        return  courseMeta;
     }
 }
